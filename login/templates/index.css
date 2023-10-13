@@ -1,0 +1,120 @@
+
+/* text on login holder */
+body{
+    background-color: #222222;
+}
+h2 {
+   font-family: "Gill Sans", sans-serif;
+   position: absolute;
+   /* z-index: 3; */
+   margin-top: 60px;
+   color: whitesmoke;
+   font-size: 50px;
+   margin-left: 120px;
+}
+#input-acess{
+    font-family: "Gill Sans", sans-serif;
+    color: whitesmoke;
+    font-size: 20px;
+    margin-left: 105px;
+}
+p{
+    font-family: "Gill Sans", sans-serif;
+    position: absolute;
+    margin-top: 130px;
+    color: whitesmoke;
+    font-size: 20px;
+    margin-left: 105px;
+
+}
+
+/* login placeholder */
+#login-holder{
+    position: relative; 
+    width: 400px;
+    height: 600px;
+    margin-left: 470px;
+    margin-top: 80px;
+    z-index: 3;
+    background-color: black;
+    box-shadow: -5px -3px 85px blue; 
+    /* filter: drop-shadow( -10px -10px  crimson); */
+}
+
+/* input box for username + password */
+.form__group {
+  position: absolute;
+  padding: 15px 0 0;
+  margin-top: 260px;
+  margin-left: 55px;
+  width: 50%;
+}
+
+.form__field {
+  font-family: "Gill Sans", sans-serif;
+  width: 140%;
+  border: 0;
+  border-bottom: 2px solid white;
+  outline: 0;
+  font-size: 1.3rem;
+  color: white;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:placeholder-shown ~ .form__label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+  }
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-family: "Gill Sans", sans-serif;
+  font-size: 1rem;
+  color: blue;
+}
+
+.form__label {
+    position: absolute;
+    top: 15;
+    display: block;
+    transition: 0.2s;
+    font-family: "Gill Sans", sans-serif;
+    font-size: 1rem;
+    color: blue;
+  }
+
+.form__field:focus {
+  ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: blue;
+    font-weight:700;    
+  }
+  padding-bottom: 6px;  
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, blue, grey);
+  border-image-slice: 1;
+}
+/* reset input */
+ .form__field{
+  &:required,&:invalid { box-shadow:none; }
+}  
+
+
+
+
+
