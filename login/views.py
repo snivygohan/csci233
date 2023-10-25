@@ -12,7 +12,7 @@ from .models import Games
 
 @login_required(login_url='login')
 def home_page(request):
-    gimages = Games.objects.all()[:5]
+    gimages = Games.objects.only('images')[:5]
     return render(request, 'base.html', {'gimages':gimages})
 
 def user_login(request):

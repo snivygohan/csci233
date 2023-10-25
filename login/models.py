@@ -7,9 +7,7 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
-<<<<<<< Updated upstream
 # Create your models here.
-=======
 
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
@@ -149,4 +147,3 @@ class Games(models.Model):
     class Meta:
         managed = False
         db_table = 'games'
->>>>>>> Stashed changes
