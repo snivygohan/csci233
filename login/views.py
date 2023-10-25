@@ -7,10 +7,13 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 from .forms import CreateUserForm
+from .models import Games
+
 
 @login_required(login_url='login')
 def home_page(request):
-    return render(request, 'base.html')
+    gimages = Games.objects.only('images')[:5]
+    return render(request, 'base.html', {'gimages':gimages})
 
 def user_login(request):
     if request.user.is_authenticated:
