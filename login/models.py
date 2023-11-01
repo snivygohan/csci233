@@ -134,11 +134,19 @@ class DjangoSession(models.Model):
 
 
 class Games(models.Model):
+
+    ESRB = (
+        ('E', 'E'),
+        ('E10+', 'E10+'),
+        ('T', 'T'),
+        ('M', 'M'),
+        ('NR', 'NR')
+    )
     id = models.BigAutoField(primary_key=True)
     title = models.CharField(max_length=255)
     release_date = models.CharField(db_column='Release Date', max_length=255)
     team = models.CharField(max_length=255)
-    esrb = models.CharField(max_length=255)
+    esrb = models.CharField(max_length=255, choices=ESRB)
     platforms = models.CharField(max_length=255)
     multiplayer = models.BooleanField()
     genres = models.CharField(max_length=255)

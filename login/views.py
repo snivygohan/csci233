@@ -67,3 +67,6 @@ def add_game(request):
 
     context = {'form':form, 'submitted':submitted}
     return render(request, 'addgame.html', context)
+
+def search_game(request):
+    return render(request, 'searchgame.html')
