@@ -48,3 +48,6 @@ def register_user(request):
 
     context = {'form':form}
     return render(request, 'register.html', context)
+
+def profile(request):
+    return render(request,'user.html')
