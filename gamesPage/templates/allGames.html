@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en-US">
+
+<head></head>
+<h1>All games</h1>
+<body>
+    {% for game in games_list %}
+        <ul>
+            <li>Title: {{ game.title }}</li>
+            <li>ID: {{ game.id }}</li>
+            <img src="{{ game.images }}">
+            <li>Summary: {{ game.summary }}</li>
+        </ul>
+        <br/>
+    {% endfor %}
+</body>

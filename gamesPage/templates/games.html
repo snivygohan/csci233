@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en-US">
+
+<h1>Each game will be here. -Kev</h1>
+<h2>these pages will have a dynamic url where the primary key of the game id matches the one in the url bar. :D</h2>
+
+<body>
+    {% for item in info %}
+        <ul>
+            <li>{{ item.id }}</li>
+            <li>{{ item.title }}</li>
+            <li>{{ item.release_date }}</li>
+            <li>{{ item.team }}</li>
+            <li>{{ item.esrb }}</li>
+            <li>{{ item.platforms }}</li>
+            <li>{{ item.multiplayer }}</li>
+            <li>{{ item.genres }}</li>
+            <img src="{{ game.images }}">
+            <li>{{ game.summary }}</li>
+        </ul>
+    {% endfor %}
+</body>
