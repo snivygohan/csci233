@@ -134,16 +134,16 @@ class DjangoSession(models.Model):
 
 
 class Games(models.Model):
-    id = models.IntegerField(primary_key=True)
-    title = models.CharField(max_length=255, blank=True, null=True)
-    release_date = models.CharField(db_column='Release Date', max_length=255, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    team = models.CharField(max_length=255, blank=True, null=True)
-    esrb = models.CharField(max_length=255, blank=True, null=True)
-    platforms = models.CharField(max_length=255, blank=True, null=True)
-    multiplayer = models.BooleanField(blank=True, null=True)
-    genres = models.CharField(max_length=255, blank=True, null=True)
-    images = models.CharField(max_length=255, blank=True, null=True)
-    summary = models.CharField(max_length=255, blank=True, null=True)
+    id = models.BigAutoField(primary_key=True)
+    title = models.CharField(max_length=255)
+    release_date = models.CharField(db_column='Release Date', max_length=255)
+    team = models.CharField(max_length=255)
+    esrb = models.CharField(max_length=255)
+    platforms = models.CharField(max_length=255)
+    multiplayer = models.BooleanField()
+    genres = models.CharField(max_length=255)
+    images = models.CharField(max_length=255)
+    summary = models.TextField()
 
     class Meta:
         managed = False

@@ -1,19 +1,20 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-from .forms import CreateUserForm
+from .forms import CreateUserForm, AddGameForm
 from .models import Games
 
 
 @login_required(login_url='login')
 def home_page(request):
     gimages = Games.objects.only('images')[:5]
-    return render(request, 'base.html', {'gimages':gimages})
+    context = {'gimages':gimages}
+    return render(request, 'base.html', context)
 
 def user_login(request):
     if request.user.is_authenticated:
@@ -51,3 +52,18 @@ def register_user(request):
 
     context = {'form':form}
     return render(request, 'register.html', context)
+
+def add_game(request):
+    submitted = False
+    if request.method == 'POST':
+        form = AddGameForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/addgame?submitted=True')
+    else:
+        form = AddGameForm()
+        if 'submitted' in request.GET:
+            submitted = True
+
+    context = {'form':form, 'submitted':submitted}
+    return render(request, 'addgame.html', context)
