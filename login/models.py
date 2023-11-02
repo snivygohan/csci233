@@ -10,20 +10,6 @@ from django.db import models
 # Create your models here.
 
 
-<<<<<<< HEAD
-#going to need to confer with steve to see how to hook up this model to admin and then our postgres db later. -kev
-class Games(models.Model):
-    id = models.IntegerField(primary_key=True)
-    title = models.CharField(max_length=255, blank=True, null=True)
-    release_date = models.CharField(db_column='Release Date', max_length=255, blank=True, null=True)  # Field name made lowercase. Field renamed to remove unsuitable characters.
-    team = models.CharField(max_length=255, blank=True, null=True)
-    esrb = models.CharField(max_length=255, blank=True, null=True)
-    platforms = models.CharField(max_length=255, blank=True, null=True)
-    multiplayer = models.BooleanField(blank=True, null=True)
-    genres = models.CharField(max_length=255, blank=True, null=True)
-    images = models.CharField(max_length=255, blank=True, null=True)
-    summary = models.CharField(max_length=255, blank=True, null=True)
-=======
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
@@ -65,10 +51,12 @@ class AuthUser(models.Model):
     is_staff = models.BooleanField()
     is_active = models.BooleanField()
     date_joined = models.DateTimeField()
-
+    def __str__(self):
+        return self.username
     class Meta:
         managed = False
         db_table = 'auth_user'
+
 
 
 class AuthUserGroups(models.Model):
@@ -158,8 +146,21 @@ class Games(models.Model):
     genres = models.CharField(max_length=255)
     images = models.CharField(max_length=255)
     summary = models.TextField()
->>>>>>> origin/testSteve
-
+    def __str__(self):
+        return self.title
     class Meta:
         managed = False
         db_table = 'games'
+    
+
+
+
+class Collections(models.Model):
+    user = models.ForeignKey(AuthUser,null = True, on_delete = models.SET_NULL)
+    games = models.ForeignKey(Games,null = True, on_delete = models.SET_NULL)
+    class Meta:
+        managed = True
+        db_table = 'collections'
+
+
+

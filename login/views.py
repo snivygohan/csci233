@@ -53,10 +53,10 @@ def register_user(request):
     context = {'form':form}
     return render(request, 'register.html', context)
 
-<<<<<<< HEAD
 def profile(request):
     return render(request,'user.html')
-=======
+  
+
 def add_game(request):
     submitted = False
     if request.method == 'POST':
@@ -71,4 +71,3 @@ def add_game(request):
 
     context = {'form':form, 'submitted':submitted}
     return render(request, 'addgame.html', context)
->>>>>>> origin/testSteve

@@ -7,10 +7,13 @@ from .models import Games
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username','email', 'password1', 'password2']
 
 class AddGameForm(ModelForm):
     class Meta:
         model = Games
         fields = ['title', 'release_date', 'team', 'esrb', 'platforms', 'multiplayer', 'genres', 'images', 'summary']
+
+
+        
 
