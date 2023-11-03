@@ -6,10 +6,10 @@
 <body>
     {% for game in games_list %}
         <ul>
-            <li>Title: {{ game.title }}</li>
-            <li>ID: {{ game.id }}</li>
+            <li><u>Title:</u> {{ game.title }}</li>
+            <li><u>ID:</u> {{ game.id }}</li>
             <img src="{{ game.images }}">
-            <li>Summary: {{ game.summary }}</li>
+            <li><u>Summary:</u> {{ game.summary }}</li>
         </ul>
         <br/>
     {% endfor %}
