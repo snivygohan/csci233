@@ -12,7 +12,7 @@ from .models import Games
 
 @login_required(login_url='login')
 def home_page(request):
-    gimages = Games.objects.only('images')[:5]
+    gimages = Games.objects.order_by('?')[:12]
     context = {'gimages':gimages}
     return render(request, 'base.html', context)
 
@@ -53,6 +53,7 @@ def register_user(request):
     context = {'form':form}
     return render(request, 'register.html', context)
 
+@login_required(login_url='login')
 def add_game(request):
     submitted = False
     if request.method == 'POST':
@@ -69,4 +70,9 @@ def add_game(request):
     return render(request, 'addgame.html', context)
 
 def search_game(request):
-    return render(request, 'searchgame.html')
+    if request.method == "POST":
+        searched = request.POST['searched']
+        results = Games.objects.filter(title__icontains=searched) 
+        return render(request, 'search.html', {'searched':searched, "results":results})
+    else:
+        return render(request, 'search.html')
