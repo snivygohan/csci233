@@ -1,0 +1,8 @@
+
+<h2> Here is a list of games </h2>
+ 
+{% for game in object_list %}
+<ul>
+   <li><a href="{{ Games.get_absolute_url }}">{{ game }}</a></li>
+ </ul>
+{% endfor %}

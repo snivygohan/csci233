@@ -4,10 +4,12 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView, DetailView
 
 # Create your views here.
-from .forms import CreateUserForm, AddGameForm
-from .models import Games
+from .forms import *
+from .models import *
+
 
 
 @login_required(login_url='login')
@@ -54,8 +56,17 @@ def register_user(request):
     return render(request, 'register.html', context)
 
 def profile(request):
-    return render(request,'user.html')
-  
+   args = {'user': request.user}
+   return render(request, 'accounts/user.html')
+    
+
+class gameView(ListView):
+    model = Games
+    template_name = "gamesList.html"
+
+class gameDetailView(DetailView):
+    model = Games
+    template_name = "game.html"
 
 def add_game(request):
     submitted = False
@@ -71,3 +82,4 @@ def add_game(request):
 
     context = {'form':form, 'submitted':submitted}
     return render(request, 'addgame.html', context)
+

@@ -6,6 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from django .shortcuts import reverse 
 
 # Create your models here.
 
@@ -52,7 +53,7 @@ class AuthUser(models.Model):
     is_active = models.BooleanField()
     date_joined = models.DateTimeField()
     def __str__(self):
-        return self.username
+        return str(self.username)
     class Meta:
         managed = False
         db_table = 'auth_user'
@@ -148,19 +149,36 @@ class Games(models.Model):
     summary = models.TextField()
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse("/game", args={str(self.id)})
+    
     class Meta:
         managed = False
         db_table = 'games'
+        verbose_name_plural = 'Games'
     
-
-
-
 class Collections(models.Model):
-    user = models.ForeignKey(AuthUser,null = True, on_delete = models.SET_NULL)
-    games = models.ForeignKey(Games,null = True, on_delete = models.SET_NULL)
+    currentUser = models.ForeignKey(AuthUser, related_name= 'owner', null = True, on_delete= models.SET_NULL)  
+    games = models.ManyToManyField(Games)
+    def __str__(self):
+        return self.currentUser.__str__() 
     class Meta:
         managed = True
         db_table = 'collections'
+        verbose_name_plural = 'Collections'
 
+    @classmethod
+    def addGame(cls, currentUser, newGame):
+        collection, created = cls.objects.get_or_create( currentUser = currentUser )
+        collection.games.add(newGame)
+
+    @classmethod
+    def removeGame(cls, currentUser, newGame):
+        collection, created = cls.objects.get_or_create( currentUser = currentUser )
+        collection.games.remove(newGame)
+        
+        
+        
 
 
