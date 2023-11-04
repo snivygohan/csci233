@@ -22,7 +22,8 @@
             <div class="card h-100" style="width: 18rem;">
               <img src="{{ link.images }}" class="card-img-top" alt="...">
               <div class="card-body">
-                <p class="card-text">{{ link.title}}</p>
+                <p class="card-text">{{ link.title }}</p>
+                <a href="{% url 'game' link.id %}" class="stretched-link"></a>
               </div>
             </div>
           </div>

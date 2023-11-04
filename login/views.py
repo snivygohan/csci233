@@ -70,9 +70,9 @@ def add_game(request):
     return render(request, 'addgame.html', context)
 
 def search_game(request):
-    if request.method == "POST":
-        searched = request.POST['searched']
+    if 'searched' in request.GET:
+        searched = request.GET['searched']
         results = Games.objects.filter(title__icontains=searched) 
-        return render(request, 'search.html', {'searched':searched, "results":results})
+        return render(request, 'search.html', {'searched':searched, 'results':results})
     else:
         return render(request, 'search.html')
