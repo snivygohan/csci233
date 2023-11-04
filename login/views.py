@@ -3,18 +3,11 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-from .forms import CreateUserForm, AddGameForm
+from .forms import CreateUserForm
 from .models import Games
 
-
-@login_required(login_url='login')
-def home_page(request):
-    gimages = Games.objects.order_by('?')[:12]
-    context = {'gimages':gimages}
-    return render(request, 'base.html', context)
 
 def user_login(request):
     if request.user.is_authenticated:
@@ -52,27 +45,3 @@ def register_user(request):
 
     context = {'form':form}
     return render(request, 'register.html', context)
-
-@login_required(login_url='login')
-def add_game(request):
-    submitted = False
-    if request.method == 'POST':
-        form = AddGameForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/addgame?submitted=True')
-    else:
-        form = AddGameForm()
-        if 'submitted' in request.GET:
-            submitted = True
-
-    context = {'form':form, 'submitted':submitted}
-    return render(request, 'addgame.html', context)
-
-def search_game(request):
-    if 'searched' in request.GET:
-        searched = request.GET['searched']
-        results = Games.objects.filter(title__icontains=searched) 
-        return render(request, 'search.html', {'searched':searched, 'results':results})
-    else:
-        return render(request, 'search.html')

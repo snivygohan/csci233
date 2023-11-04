@@ -2,6 +2,9 @@
 <html lang="en-US">
 
 <head></head>
+{% extends 'main.html' %}
+{% block content %}
+
 <h1>All games</h1>
 <body>
     {% for game in games_list %}
@@ -14,3 +17,6 @@
         <br/>
     {% endfor %}
 </body>
+
+{% endblock %}
+

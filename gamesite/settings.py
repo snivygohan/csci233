@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'django_filters',
+    'django_rename_app',
     'login',
+    'baseApp',
     'gamesPage'
 ]
 
