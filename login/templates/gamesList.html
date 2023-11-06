@@ -3,6 +3,7 @@
  
 {% for game in object_list %}
 <ul>
-   <li><a href="{{ Games.get_absolute_url }}">{{ game }}</a></li>
+   {# correct - this is called on each instance in the loop #}
+   <li><a href="{{ game.get_absolute_url }}">{{ game }}</a></li>
  </ul>
 {% endfor %}
