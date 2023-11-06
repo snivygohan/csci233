@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en-US">
+{% load static %}
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Login Page</title>
+    <!-- <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One"
+      rel="stylesheet" /> -->
+    <link rel="stylesheet" href="{% static 'index.css' %}" /> 
+  </head>
+
+  <body>
+    <!-- Here is our main header that is used across all the pages of our website -->
+   
+    <div id="login-holder">
+      <h2>Hello,</h2>
+      <p>sign into your account</p>
+
+      <!-- <input id="input-acess" type="username" placeholder="username">
+      <input id="input-acess" type="password" placeholder="password"> -->
+
+      <div class="form__group field">
+        <input type="input" class="form__field" placeholder="Username" name="name" id='name' required />
+        <label for="name" class="form__label">Username</label>
+      </div>
+
+      <div style="margin-top: 180px;" class="form__group field">
+        <input type="password" style="margin-top: 180px;" class="form__field" placeholder="Name" name="name" id='name' required />
+        <label for="name" style="margin-top: 180px;"class="form__label">Password</label>
+      </div> 
+
+     
+ 
+
+    </div>
+   
+  
+
+   <!-- <p>Welcome -></p>  -->
+
+  </body>
+  </html>
