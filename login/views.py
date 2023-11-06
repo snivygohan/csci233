@@ -7,9 +7,14 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView
 
 # Create your views here.
+<<<<<<< HEAD
 from .forms import *
 from .models import *
 
+=======
+from .forms import CreateUserForm, AddGameForm
+from .models import Games
+>>>>>>> origin/testSteve
 
 
 @login_required(login_url='login')
@@ -55,6 +60,7 @@ def register_user(request):
     context = {'form':form}
     return render(request, 'register.html', context)
 
+<<<<<<< HEAD
 def profile(request):
    args = {'user': request.user}
    return render(request, 'accounts/user.html')
@@ -68,6 +74,8 @@ class gameDetailView(DetailView):
     model = Games
     template_name = "game.html"
 
+=======
+>>>>>>> origin/testSteve
 def add_game(request):
     submitted = False
     if request.method == 'POST':
@@ -81,5 +89,9 @@ def add_game(request):
             submitted = True
 
     context = {'form':form, 'submitted':submitted}
+<<<<<<< HEAD
     return render(request, 'addgame.html', context)
 
+=======
+    return render(request, 'addgame.html', context)
+>>>>>>> origin/testSteve

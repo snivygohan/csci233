@@ -52,14 +52,21 @@ class AuthUser(models.Model):
     is_staff = models.BooleanField()
     is_active = models.BooleanField()
     date_joined = models.DateTimeField()
+<<<<<<< HEAD
     def __str__(self):
         return str(self.username)
+=======
+
+>>>>>>> origin/testSteve
     class Meta:
         managed = False
         db_table = 'auth_user'
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/testSteve
 class AuthUserGroups(models.Model):
     id = models.BigAutoField(primary_key=True)
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
@@ -147,6 +154,7 @@ class Games(models.Model):
     genres = models.CharField(max_length=255)
     images = models.CharField(max_length=255)
     summary = models.TextField()
+<<<<<<< HEAD
     def __str__(self):
         return self.title
     
@@ -182,3 +190,9 @@ class Collections(models.Model):
         
 
 
+=======
+
+    class Meta:
+        managed = False
+        db_table = 'games'
+>>>>>>> origin/testSteve
