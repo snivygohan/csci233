@@ -51,6 +51,9 @@ class AuthUser(models.Model):
     is_staff = models.BooleanField()
     is_active = models.BooleanField()
     date_joined = models.DateTimeField()
+    about = models.CharField(max_length=254)
+
+   
 
     class Meta:
         managed = False

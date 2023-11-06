@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'django_rename_app',
     'login',
     'baseApp',
-    'gamesPage'
+    'gamesPage',
+    'UserPage'
+
 ]
 
 MIDDLEWARE = [
