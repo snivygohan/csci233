@@ -6,7 +6,6 @@ from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 from .forms import CreateUserForm
-from .models import Games
 
 
 def user_login(request):

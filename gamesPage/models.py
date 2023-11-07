@@ -1,4 +1,4 @@
 from django.db import models
-from login.models import Games
+from baseApp.models import Games
 
 # Create your models here.
