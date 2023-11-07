@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 
 # Create your models here.
 
@@ -31,11 +31,11 @@ class Games(models.Model):
         db_table = 'games'
 
 class Collections(models.Model):
-    currentUser = models.ForeignKey(User, related_name= 'owner', null = True, on_delete= models.SET_NULL)  
+    currentUser = models.ForeignKey(settings.AUTH_USER_MODEL, related_name= 'owner', null = True, on_delete= models.SET_NULL)  
     games = models.ForeignKey(Games, related_name='games', null = True, on_delete= models.SET_NULL)
 
     def __str__(self):
-        return self.currentUser.__str__()
+        return f'({self.currentUser}-{self.games})'
     
     class Meta:
         managed = True
@@ -51,11 +51,3 @@ class Collections(models.Model):
     def removeGame(cls, currentUser, newGame):
         collection, created = cls.objects.get_or_create( currentUser = currentUser )
         collection.games.remove(newGame)
-
-class Completed(models.Model):
-    user_id = models.ForeignKey(User, models.DO_NOTHING, blank=True, null=True)
-    game_ids = models.ForeignKey(Games, models.DO_NOTHING, db_column='game_ids', blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'completed'
