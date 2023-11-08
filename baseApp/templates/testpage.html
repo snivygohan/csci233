@@ -1,0 +1,21 @@
+<form method="GET" action="{% url 'filter' %}">
+    {{ form }}
+    <input type="submit" value="Submit" class="btn btn-primary"/>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>Game</th>
+        <th>ESRB</th>
+        <th>Genre</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for things in games %}
+            <tr>
+                <td>{{ things.title }}</td>
+                <td>{{ things.esrb }}</td>
+                <td>{{ things.genres }}</td>
+        {% endfor %}
+    </tbody>
+</table>

@@ -1,12 +1,18 @@
 import django_filters
 from .models import Games
+from django import forms
 
-genre_choices = (('Action'))
+genre_choices = (
+    (0, 'Action'),
+    (1, 'Adventure'),
+    (2, 'Simulation')
+)
 
 class GenreFilter(django_filters.FilterSet):
 
-    genre = django_filters.MultipleChoiceFilter(choices=genre_choices, conjoined = True)
-
-    class Meta:
-        model = Games
-        fields = ['genres']
+    genres = django_filters.MultipleChoiceFilter(
+        label = 'Genre filter',
+        choices = genre_choices,
+        conjoined = True,
+        widget=forms.CheckboxSelectMultiple
+    )
