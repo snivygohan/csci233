@@ -4,13 +4,17 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Games
 from .forms import AddGameForm
+from .filters import GenreFilter
 # Create your views here.
 
 
 @login_required(login_url='login')
 def home_page(request):
     gimages = Games.objects.order_by('?')[:12]
-    context = {'gimages':gimages}
+    
+    genre_filter = GenreFilter(request.GET, queryset=Games.objects.all())
+
+    context = {'gimages':gimages, 'form':genre_filter.form, 'games':genre_filter.qs}
     return render(request, 'base.html', context)
 
 def search_game(request):
