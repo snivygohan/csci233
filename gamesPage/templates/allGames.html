@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en-US">
+
+<head></head>
+{% extends 'main.html' %}
+{% block content %}
+
+<h1>All games</h1>
+<body>
+    {% for game in games_list %}
+        <ul>
+            <li><u>Title:</u> {{ game.title }}</li>
+            <li><u>ID:</u> {{ game.id }}</li>
+            <img src="{{ game.images }}">
+            <li><u>Summary:</u> {{ game.summary }}</li>
+        </ul>
+        <br/>
+    {% endfor %}
+</body>
+
+{% endblock %}
+
