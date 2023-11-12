@@ -7,8 +7,8 @@ name = "pypi"
 django = "*"
 django-debug-toolbar = "*"
 django-environ = "*"
-psycopg2 = "*"
 django-filter = "*"
 django-rename-app = "*"
+psycopg2 = "*"
 
 [dev-packages]

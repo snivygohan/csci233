@@ -11,15 +11,14 @@ from .filters import GenreFilter
 @login_required(login_url='login')
 def home_page(request):
     gimages = Games.objects.order_by('?')[:12]
-
+    
     context = {'gimages':gimages}
     return render(request, 'base.html', context)
 
 def filter_test(request):
     genre_filter = GenreFilter(request.GET, queryset=Games.objects.all())
 
-    context = {'form':genre_filter.form, 
-               'games':genre_filter.qs}
+    context = {'form':genre_filter.form, 'games':genre_filter.qs}
     return render(request, 'testpage.html', context)
 
 def search_game(request):

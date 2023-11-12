@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 from django.conf import settings
 
 # Create your models here.
@@ -13,20 +14,20 @@ class Games(models.Model):
 
     id = models.BigAutoField(primary_key=True)
     title = models.CharField(max_length=255)
-    release_date = models.CharField(db_column='Release Date', max_length=255)
+    release_date = models.DateField(max_length=255)
     team = models.CharField(max_length=255)
     esrb = models.CharField(max_length=255, choices=ESRB_Rating.choices, default=ESRB_Rating.NORATING)
     platforms = models.CharField(max_length=255)
     multiplayer = models.BooleanField()
     genres = models.CharField(max_length=255)
-    images = models.CharField(max_length=255)
+    images = models.TextField()
     summary = models.TextField()
 
     def __str__(self):
         return str(self.title)
     
     class Meta:
-        managed = False
+        managed = True
         db_table = 'games'
 
 class Collections(models.Model):
