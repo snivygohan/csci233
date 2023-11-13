@@ -8,12 +8,21 @@ from .filters import GenreFilter
 # Create your views here.
 
 
-@login_required(login_url='login')
 def home_page(request):
-    gimages = Games.objects.order_by('?')[:12]
-    
-    context = {'gimages':gimages}
-    return render(request, 'base.html', context)
+    results = Games.objects.order_by('?')[:12]
+    srchnum = 0
+    if request.method == 'GET' and 'searched' in request.GET:
+        searched = request.GET['searched']
+        if searched is not None and searched != '':
+            results = Games.objects.filter(title__icontains=searched)
+            for title in results:
+                srchnum += 1
+            context = context = {'searched':searched, 'results':results, 'srchnum':srchnum}
+            return render(request, 'homepage.html', context)
+        else:
+            return render(request, 'homepage.html', {'results':results})
+    else:
+        return render(request, 'homepage.html', {'results':results})
 
 def filter_test(request):
     genre_filter = GenreFilter(request.GET, queryset=Games.objects.all())
@@ -21,13 +30,18 @@ def filter_test(request):
     context = {'form':genre_filter.form, 'games':genre_filter.qs}
     return render(request, 'testpage.html', context)
 
-def search_game(request):
-    if 'searched' in request.GET:
-        searched = request.GET['searched']
-        results = Games.objects.filter(title__icontains=searched) 
-        return render(request, 'search.html', {'searched':searched, 'results':results})
-    else:
-        return render(request, 'search.html')
+# def search_game(request):
+#     srchnum = 0
+#     if 'searched' in request.GET:
+#         searched = request.GET['searched']
+#         results = Games.objects.filter(title__icontains=searched)
+
+#         for title in results:
+#             srchnum += 1
+
+#         return render(request, 'search.html', {'searched':searched, 'results':results, 'srchnum':srchnum})
+#     else:
+#         return render(request, 'search.html')
     
 @login_required(login_url='login')
 def add_game(request):
