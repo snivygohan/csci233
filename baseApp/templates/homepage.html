@@ -42,6 +42,7 @@
           
           <div class="navbar-user">
           <p>Hello, {{ request.user }}</p>
+          <a href="{% url 'home' %}" class="stretched-link"></a>
           </div>
 
           <div class="navbar-links">
@@ -82,7 +83,11 @@
                 <input type="text" class="form-control" type = "search" placeholder="Search game titles..." aria-label="Search" aria-describedby="basic-addon1" name="searched">
               </div>
             </form>
+          {% if searched %}
+            <p style="color:white;">{{ srchnum }} results for '{{ searched }}'</p>
+          {% endif %}
           </nav>
+
           
           <!-- <p>Browse by console</p>
          
@@ -92,7 +97,7 @@
 
         </div>
       </nav>
-      <br><br><br><br>
+      <br><br><br><br><br>
       <div class="container-sm d-flex justify-content-center me-5">
         <div class="row">
             {% for games in results %}
