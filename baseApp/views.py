@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
-from .models import Games
+from .models import Games, Collections
 from .forms import AddGameForm
 from .filters import GenreFilter
 # Create your views here.
@@ -14,7 +14,7 @@ def home_page(request):
     if request.method == 'GET' and 'searched' in request.GET:
         searched = request.GET['searched']
         if searched is not None and searched != '':
-            results = Games.objects.filter(title__icontains=searched)
+            results = Games.objects.filter(title__unaccent__icontains=searched)
             for title in results:
                 srchnum += 1
             context = context = {'searched':searched, 'results':results, 'srchnum':srchnum}
@@ -24,10 +24,12 @@ def home_page(request):
     else:
         return render(request, 'homepage.html', {'results':results})
 
-def filter_test(request):
+def test_page(request):
     genre_filter = GenreFilter(request.GET, queryset=Games.objects.all())
 
-    context = {'form':genre_filter.form, 'games':genre_filter.qs}
+    usercollection = Collections.objects.filter(currentUser__exact=request.user.id)
+
+    context = {'test':usercollection}
     return render(request, 'testpage.html', context)
 
 # def search_game(request):
