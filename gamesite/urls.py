@@ -22,5 +22,7 @@ urlpatterns = [
     path('__debug__/', include('debug_toolbar.urls')),
     path('login/', include('login.urls')),
     path('', include('baseApp.urls')),
-    path('games/', include('gamesPage.urls'))
+    path('games/', include('gamesPage.urls')),
+    path('',include('UserPage.urls'))
+
 ]

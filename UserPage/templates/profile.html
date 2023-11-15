@@ -2,8 +2,21 @@
 <html>
 <body>
 
-<h1>{{request.user}}</h1>
-<h2>About</h2>
+<h1>{{page_user}}</h1>
 
+
+
+
+
+
+
+
+
+<h1>{{request.user}}</h1>
+<h2>About: {{user.userprofile.about}}</h2>
+<h3> Collection </h3> <br>
+{{% for entry in test %}}
+{{% entry.games.titles%}}
+{{% endfor %}}
 </body>
 </html>

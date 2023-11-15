@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+
 #remember that you add "/games/" after whatever is there for the URL, and then continue the pathing.
 
 urlpatterns = [

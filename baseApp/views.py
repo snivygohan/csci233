@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
-from .models import Games
+from .models import Games, Collections
 from .forms import AddGameForm
 # Create your views here.
 
@@ -36,3 +36,6 @@ def add_game(request):
 
     context = {'form':form, 'submitted':submitted}
     return render(request, 'addgame.html', context)
+
+def changeCollection(request, operation, pk):
+    return redirect('login')
