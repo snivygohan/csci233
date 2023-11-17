@@ -11,5 +11,6 @@ psycopg2 = "*"
 django-filter = "*"
 django-rename-app = "*"
 pillow = "*"
+filters = "*"
 
 [dev-packages]

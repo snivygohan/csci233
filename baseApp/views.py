@@ -38,4 +38,4 @@ def add_game(request):
     return render(request, 'addgame.html', context)
 
 def changeCollection(request, operation, pk):
-    return redirect('login')
+    return redirect('addgame.html')

@@ -1,22 +1,14 @@
 <!DOCTYPE html>
 <html>
 <body>
-
-<h1>{{page_user}}</h1>
-
-
-
-
-
-
-
-
-
-<h1>{{request.user}}</h1>
-<h2>About: {{user.userprofile.about}}</h2>
+<h1> <img src = "{{pageuser.profile_pic.url}}" width = 100px> {{pageuser.user.username}}</h1>
+<h2>About: {{pageuser.about}}</h2>
 <h3> Collection </h3> <br>
-{{% for entry in test %}}
-{{% entry.games.titles%}}
-{{% endfor %}}
+
+{% for entry in test %}
+
+{{entry.games.title}}
+
+{% endfor %}
 </body>
 </html>
