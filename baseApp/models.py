@@ -38,7 +38,7 @@ class Collections(models.Model):
 
     currentUser = models.ForeignKey(settings.AUTH_USER_MODEL, related_name= 'owner', null = True, on_delete= models.SET_NULL)  
     games = models.ForeignKey(Games, related_name='games', null = True, on_delete= models.SET_NULL)
-    status = models.CharField(max_length=10, blank= True, choices=GameStatus.choices)
+    status = models.CharField(max_length=10, blank= True, null = True, choices=GameStatus.choices)
     favorite = models.BooleanField(default= False)
 
     def __str__(self):
