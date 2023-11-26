@@ -1,4 +1,5 @@
 from django.db import models
+<<<<<<< HEAD
 from baseApp.models import *
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -25,3 +26,12 @@ class UserProfile(models.Model):
     
 
 
+=======
+from django.contrib.auth.models import User
+from baseApp.models import *
+
+# Create your models here.
+
+
+        
+>>>>>>> testSteve

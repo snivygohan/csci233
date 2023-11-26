@@ -31,11 +31,17 @@
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-            </li>
+            {% if request.user.is_superuser %}
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'admin:index' %}">Admin</a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+              </li>
+            {% endif %}
           </ul>
-          <form class="d-flex" role="search" action="{% url 'search' %}">
+          <form class="d-flex" role="search" action="">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="searched">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>

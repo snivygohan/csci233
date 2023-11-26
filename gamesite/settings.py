@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.postgres',
     'debug_toolbar',
     'django_filters',
     'django_rename_app',
@@ -48,7 +49,10 @@ INSTALLED_APPS = [
     'baseApp',
     'gamesPage',
     'UserPage'
+<<<<<<< HEAD
 
+=======
+>>>>>>> testSteve
 ]
 
 MIDDLEWARE = [
@@ -94,12 +98,21 @@ WSGI_APPLICATION = 'gamesite.wsgi.application'
 
 DATABASES = {
     'default': {
+<<<<<<< HEAD
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'postgres',
         'USER': 'postgres',
         'PASSWORD':'school1',
         'HOST': 'localhost',
         'PORT': '5432'
+=======
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT')
+>>>>>>> testSteve
     }
 }
 
