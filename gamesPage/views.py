@@ -1,12 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.http import HttpResponse
-<<<<<<< HEAD
-from baseApp.models import Games
-
-=======
 from .models import Games, Collections
->>>>>>> testSteve
 # Create your views here.
 
 

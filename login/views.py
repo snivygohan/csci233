@@ -7,10 +7,6 @@ from baseApp.models import Games
 
 # Create your views here.
 from .forms import CreateUserForm
-<<<<<<< HEAD
-
-=======
->>>>>>> testSteve
 
 
 def user_login(request):
