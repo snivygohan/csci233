@@ -5,9 +5,10 @@ from django.conf.urls.static import static
 
 
 #URL config
+app_name = "profile"
 urlpatterns = [
-     path('profile/<int:pk>/', views.profile, name = 'profile'),
+     path('<int:pk>/', views.profile, name = 'profile'),
      
-     
-     ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+      ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
 

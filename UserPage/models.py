@@ -2,7 +2,7 @@ from django.db import models
 from baseApp.models import *
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
-
+from django.conf import settings
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete= models.CASCADE, null = True) 
