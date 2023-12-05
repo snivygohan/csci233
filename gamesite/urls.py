@@ -26,7 +26,7 @@ urlpatterns = [
     path('login/', include('login.urls')),
     path('', include('baseApp.urls')),
     path('games/', include('gamesPage.urls')),
-    path('profile/', include('UserPage.urls',namespace = 'profile')),
+    path('profile/', include('UserPage.urls')),
   
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

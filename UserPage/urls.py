@@ -5,7 +5,6 @@ from django.conf.urls.static import static
 
 
 #URL config
-app_name = "profile"
 urlpatterns = [
      path('<int:pk>/', views.profile, name = 'profile'),
      
