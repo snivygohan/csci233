@@ -24,6 +24,8 @@ def profile(request,pk):
         is_self = True
     elif currentUser.user_id != pageUser.user.id:
         is_self = False
+    
+   
 
 
     context['user'] = request.user
@@ -41,14 +43,3 @@ def profile(request,pk):
     return render(request,'profile.html',context)
 
 
-def account_search_view(request, *args, **kwargs):
-    context = {}
-    if request.method == "GET":
-        search_query = request.GET.get("q")
-        if len(search_query) > 0:
-            search_result = UserProfile.objects.filter(user__icontains = search_query).distinct()
-            user = request.user
-            profiles = []
-            for profiles in search_result:
-                profiles.append((profile,False))
-    return render(request, "search_results.html", context)
