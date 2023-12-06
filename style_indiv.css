@@ -1,0 +1,131 @@
+/*indiv_game_det css page, v2 12.5.2023*/
+*{
+	box-sizing: border-box;
+	/*font-family: sans-serif;*/
+}
+body{
+	margin: 0;
+}
+nav{
+	height: 80px;
+	background: #fdcc04;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0rem calc((100vw - 1300px) / 2);
+}
+nav a{
+	text-decoration: none;
+	color: #000;
+	padding: 0 1.5rem;
+	font-size: 1.5em;
+}
+nav a:hover{
+	color: #33ddff;
+}
+.logo{
+	color: #000;
+	font-size: 1.5rem;
+	font-weight: bold;
+	font-style: italic;
+	padding: 0 2rem;
+}
+.game-cover{
+	width: 50%;
+	float: left;
+	padding: 10px;
+}
+.image{
+	display: block;
+	width: 75%;
+	margin: auto;
+	object-fit: contain;
+	border: 1px solid black;
+}
+.title{
+	padding: 10px;
+	width: 50%;
+	float: right;
+}
+section{
+	padding: 10px;
+	width: 50%;
+	float: right;
+	border: 1px solid black;
+}
+.playing-users-container{
+	margin-top: 10px;
+	padding: 10px;
+	border: 1px solid black;
+	width: 50%;
+	float: right;
+}
+.playing-users ul{
+	list-style: none;
+}
+.playing-users li{
+	display: inline-block;
+ 	margin-right: 10px;
+ 	border: 1px solid black;
+}
+.buttons{
+	display: flex;
+	justify-content: space-evenly;
+}
+.playing-users{
+	border: 1px solid black;
+}
+.playing-users a{
+	text-decoration: none;
+	color: #fdcc04;
+}
+/*I shamelessly took this from w3 schools :)*/
+/* Dropdown Button */
+.dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+	background-color: #ddd;
+}
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+	background-color: #3e8e41;
+}
+.add-button{
+	padding: 16px;
+	font-size: 16px;
+}
+.fav-button{
+	padding: 16px;
+	font-size: 16px;
+}
