@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.http import HttpResponse
-from .models import Games, Collections
+from .models import Games, Collections, UserProfile
 # Create your views here.
 
 
@@ -12,6 +12,7 @@ def all_games(request):
 def game_page(request, id):
         
     gameDetails = Games.objects.get(id=id)
+    playingUsers = Collections.objects.filter(games_id = id, status = "Playing")[:10]
 
     if id is not None and request.user.is_authenticated:
     
@@ -22,14 +23,18 @@ def game_page(request, id):
         if verifyStatus == True:
             getStatus = Collections.objects.get(currentUser = request.user, games_id = id, status__isnull=False)
 
-            context = {"object":gameDetails, "verifyc":verifyCollection, "verifyf":verifyFavorite, "verifys":verifyStatus, "gstatus":getStatus}
+            context = {"object":gameDetails, "verifyc":verifyCollection, 
+                       "verifyf":verifyFavorite, "verifys":verifyStatus, 
+                       "gstatus":getStatus, "playing":playingUsers}
             return render(request, 'games.html', context)
         else:
-            context = {"object":gameDetails, "verifyc":verifyCollection, "verifyf":verifyFavorite, "verifys":verifyStatus}
+            context = {"object":gameDetails, "verifyc":verifyCollection, 
+                       "verifyf":verifyFavorite, "verifys":verifyStatus,
+                       "playing":playingUsers}
             return render(request, 'games.html', context)
         
     else:
-        context = {"object":gameDetails}
+        context = {"object":gameDetails, "playing":playingUsers}
         return render(request, 'games.html', context)
 
 def add_game(request):
