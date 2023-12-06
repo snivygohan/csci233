@@ -46,8 +46,11 @@
           </div>
 
           <div class="navbar-links">
+          {% if request.user.is_authenticated %}
           <a  class="navbar-brand line-profile" href="{% url 'profile' request.user.id %}"><span>────────</span> </a>
-
+          {% else %}
+          <a  class="navbar-brand line-profile" href="#"><span>────────</span> </a>  
+          {% endif %}
           <a  class="navbar-brand line-TBD" href="#"><span>────────</span></a> 
           
           <a  class="navbar-brand line-TBD" href="#"><span>────────</span></a> 
