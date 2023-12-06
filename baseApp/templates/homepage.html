@@ -7,6 +7,7 @@
     <title>Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="{% static 'homepage.css' %}" rel="stylesheet" />
+    <script src="https://unpkg.com/htmx.org@1.9.9" integrity="sha384-QFjmbokDn2DjBjq+fM+8LUIVrAgqcNW2s0PjAxHETgRn9l4fvX31ZxDxvwQnyMOX" crossorigin="anonymous"></script>
   </head>
   <body>
     <!-- user name placeholder -->
@@ -80,7 +81,7 @@
          
 
           <nav class="navbar bg-body-tertiary navbar-search" data-bs-theme="dark">
-            <form class="container-fluid" role="search" action="{% url 'home' %}">
+            <form class="container-fluid" role="search" hx-get="{% url 'home' %}" hx-target="#results">
               <div class="input-group">
                 <span class="input-group-text" id="basic-addon1">🔎</span>
                 <input type="text" class="form-control" type = "search" placeholder="Search game titles..." aria-label="Search" aria-describedby="basic-addon1" name="searched">
@@ -101,22 +102,9 @@
         </div>
       </nav>
       <br><br><br><br><br>
-      <div class="container-sm d-flex justify-content-center me-5">
-        <div class="row">
-            {% for games in results %}
-              <div class="col-sm-2" data-bs-theme="dark">
-                <div class="card h-100" style="width: 14rem;">
-                  <img src="{{ games.images }}" class="card-img-top" onerror="this.onerror=null;this.src='https://static.thenounproject.com/png/504708-200.png';">
-                  <div class="card-body">
-                    <p class="card-text">{{ games.title }}</p>
-                    <a href="{% url 'game' games.id %}" class="stretched-link"></a>
-                  </div>
-                </div>
-              </div>
-          {% endfor %}
+      <div id="results">
+        {% include 'partials/search-results.html'%}
       </div>
-    </div>
       
-
   </body>
 </html>
