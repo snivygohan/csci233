@@ -48,13 +48,3 @@ class Collections(models.Model):
         managed = True
         db_table = 'collections'
         verbose_name_plural = 'Collections'
-
-    @classmethod
-    def addGame(cls, currentUser, newGame):
-        collection, created = cls.objects.get_or_create( currentUser = currentUser )
-        collection.games.add(newGame)
-
-    @classmethod
-    def removeGame(cls, currentUser, newGame):
-        collection, created = cls.objects.get_or_create( currentUser = currentUser )
-        collection.games.remove(newGame)

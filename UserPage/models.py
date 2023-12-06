@@ -6,7 +6,7 @@ from django.conf import settings
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete= models.CASCADE, null = True) 
-    about = models.TextField(max_length = 250, default = '')
+    about = models.TextField(max_length = 255, default = '')
     profile_pic = models.ImageField(null = True, blank = True, upload_to = "profile/")
     
     def create_profile(sender, **kwargs):
@@ -19,7 +19,7 @@ class UserProfile(models.Model):
         return str(self.user)
     
     class Meta:
-        managed = False
+        managed = True
         db_table = 'UserPage_userprofile'
     
     

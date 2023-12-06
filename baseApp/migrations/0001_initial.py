@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(primary_key=True, serialize=False)),
                 ('title', models.CharField(max_length=255)),
-                ('release_date', models.CharField(db_column='Release Date', max_length=255)),
+                ('release_date', models.CharField(max_length=255)),
                 ('team', models.CharField(max_length=255)),
                 ('esrb', models.CharField(choices=[('E', 'E'), ('E10+', 'E10'), ('T', 'T'), ('M', 'M'), ('NR', 'Norating')], default='NR', max_length=255)),
                 ('platforms', models.CharField(max_length=255)),
