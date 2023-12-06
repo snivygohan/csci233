@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 from django.conf import settings
 
 # Create your models here.
@@ -13,20 +14,20 @@ class Games(models.Model):
 
     id = models.BigAutoField(primary_key=True)
     title = models.CharField(max_length=255)
-    release_date = models.CharField(db_column='Release Date', max_length=255)
+    release_date = models.DateField(max_length=255)
     team = models.CharField(max_length=255)
     esrb = models.CharField(max_length=255, choices=ESRB_Rating.choices, default=ESRB_Rating.NORATING)
     platforms = models.CharField(max_length=255)
     multiplayer = models.BooleanField()
     genres = models.CharField(max_length=255)
-    images = models.CharField(max_length=255)
+    images = models.TextField()
     summary = models.TextField()
 
     def __str__(self):
         return str(self.title)
     
     class Meta:
-        managed = False
+        managed = True
         db_table = 'games'
 
 class Collections(models.Model):
@@ -37,7 +38,7 @@ class Collections(models.Model):
 
     currentUser = models.ForeignKey(settings.AUTH_USER_MODEL, related_name= 'owner', null = True, on_delete= models.SET_NULL)  
     games = models.ForeignKey(Games, related_name='games', null = True, on_delete= models.SET_NULL)
-    status = models.CharField(max_length=10, blank= True, choices=GameStatus.choices)
+    status = models.CharField(max_length=10, blank= True, null = True, choices=GameStatus.choices)
     favorite = models.BooleanField(default= False)
 
     def __str__(self):
@@ -47,13 +48,3 @@ class Collections(models.Model):
         managed = True
         db_table = 'collections'
         verbose_name_plural = 'Collections'
-
-    @classmethod
-    def addGame(cls, currentUser, newGame):
-        collection, created = cls.objects.get_or_create( currentUser = currentUser )
-        collection.games.add(newGame)
-
-    @classmethod
-    def removeGame(cls, currentUser, newGame):
-        collection, created = cls.objects.get_or_create( currentUser = currentUser )
-        collection.games.remove(newGame)

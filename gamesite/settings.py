@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import environ
-
+import os
 env = environ.Env()
 environ.Env.read_env()
 
@@ -28,6 +28,8 @@ SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+if DEBUG:
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend" #development ONLY
 
 ALLOWED_HOSTS = []
 
@@ -41,13 +43,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.postgres',
     'debug_toolbar',
     'django_filters',
     'django_rename_app',
     'login',
     'baseApp',
     'gamesPage',
-    'UserPage'
+    'UserPage',
 ]
 
 MIDDLEWARE = [
@@ -93,7 +96,7 @@ WSGI_APPLICATION = 'gamesite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': env('DB_NAME'),
         'USER': env('DB_USER'),
         'PASSWORD': env('DB_PASSWORD'),
@@ -101,6 +104,7 @@ DATABASES = {
         'PORT': env('DB_PORT')
     }
 }
+
 
 
 # Password validation
@@ -137,7 +141,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), os.path.join(BASE_DIR, 'media'),)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+TEMP = os.path.join(BASE_DIR, 'media_cdn/temp')
+BASE_URL = "http://127.0.0.1:8000/"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

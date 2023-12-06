@@ -2,28 +2,48 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 
-from .models import Games
+from .models import Games, Collections
 from .forms import AddGameForm
 from .filters import GenreFilter
 # Create your views here.
 
 
-@login_required(login_url='login')
 def home_page(request):
-    gimages = Games.objects.order_by('?')[:12]
-    
+    results = Games.objects.order_by('?')[:12]
+    srchnum = 0
+    if request.method == 'GET' and 'searched' in request.GET:
+        searched = request.GET['searched']
+        if searched is not None and searched != '':
+            results = Games.objects.filter(title__unaccent__icontains=searched)
+            for title in results:
+                srchnum += 1
+            context = context = {'searched':searched, 'results':results, 'srchnum':srchnum}
+            return render(request, 'homepage.html', context)
+        else:
+            return render(request, 'homepage.html', {'results':results})
+    else:
+        return render(request, 'homepage.html', {'results':results})
+
+def test_page(request):
     genre_filter = GenreFilter(request.GET, queryset=Games.objects.all())
 
-    context = {'gimages':gimages, 'form':genre_filter.form, 'games':genre_filter.qs}
-    return render(request, 'base.html', context)
+    usercollection = Collections.objects.filter(currentUser__exact=request.user.id)
 
-def search_game(request):
-    if 'searched' in request.GET:
-        searched = request.GET['searched']
-        results = Games.objects.filter(title__icontains=searched) 
-        return render(request, 'search.html', {'searched':searched, 'results':results})
-    else:
-        return render(request, 'search.html')
+    context = {'test':usercollection}
+    return render(request, 'testpage.html', context)
+
+# def search_game(request):
+#     srchnum = 0
+#     if 'searched' in request.GET:
+#         searched = request.GET['searched']
+#         results = Games.objects.filter(title__icontains=searched)
+
+#         for title in results:
+#             srchnum += 1
+
+#         return render(request, 'search.html', {'searched':searched, 'results':results, 'srchnum':srchnum})
+#     else:
+#         return render(request, 'search.html')
     
 @login_required(login_url='login')
 def add_game(request):
@@ -40,3 +60,6 @@ def add_game(request):
 
     context = {'form':form, 'submitted':submitted}
     return render(request, 'addgame.html', context)
+
+def changeCollection(request, operation, pk):
+    return redirect('addgame.html')
