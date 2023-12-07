@@ -1,0 +1,15 @@
+<div class="container-sm d-flex justify-content-center me-5">
+    <div class="row">
+        {% for games in results %}
+          <div class="col-sm-2" data-bs-theme="dark">
+            <div class="card h-100" style="width: 14rem;">
+              <img src="{{ games.images }}" class="card-img-top" onerror="this.onerror=null;this.src='https://static.thenounproject.com/png/504708-200.png';">
+              <div class="card-body">
+                <p class="card-text">{{ games.title }}</p>
+                <a href="{% url 'game' games.id %}" class="stretched-link"></a>
+              </div>
+            </div>
+          </div>
+      {% endfor %}
+  </div>
+</div>
