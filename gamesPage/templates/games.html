@@ -43,7 +43,7 @@
         <div class="playing-users">
             <ul>
                 {% for users in playing %}
-                <img src="{{ users.currentUser.userprofile.profile_pic.url }}">
+                <img src="{{ users.currentUser.userprofile.profile_pic.url }}" width="128" height="128">
                 <li><a href="{% url 'profile' users.currentUser.id %}">{{ users.currentUser }}</a></li>
                 {% endfor %}
             </ul>
