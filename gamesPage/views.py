@@ -2,12 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.http import HttpResponse
 from .models import Games, Collections, UserProfile
-# Create your views here.
+from django.core.paginator import Paginator
 
 
 def all_games(request):
-    games_list = Games.objects.all()[:10]
-    return render(request, 'allGames.html', {'games_list':games_list})
+    p = Paginator(Games.objects.all(), 48)
+    page = request.GET.get('page')
+    games = p.get_page(page)
+    return render(request, 'allGames.html', {'games':games})
 
 def game_page(request, id):
         
