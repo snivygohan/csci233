@@ -9,7 +9,7 @@ from django.conf import settings
 # Create your views here.
 def profile(request,pk):
     pageUser = UserProfile.objects.get(user_id = pk)
-    currentUser = UserProfile.objects.get(user_id = request.user.id)
+    currentUser = request.user.id
     userCollection = Collections.objects.filter(currentUser__exact = pk)
     Favorite = Collections.objects.filter(currentUser__exact = pk, favorite = True)
     currentlyPlaying = Collections.objects.filter(currentUser__exact = pk, status = Collections.GameStatus.PLAYING)
@@ -20,9 +20,9 @@ def profile(request,pk):
     is_self = False
     is_friend = False
     
-    if currentUser.user_id == pageUser.user_id:
+    if currentUser == pageUser.user_id:
         is_self = True
-    elif currentUser.user_id != pageUser.user.id:
+    elif currentUser != pageUser.user.id:
         is_self = False
 
 

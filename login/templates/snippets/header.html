@@ -38,7 +38,7 @@
 							</div>
 
 							<div class="btn-group dropleft">
-								<img class="account-image rounded-circle m-auto d-block dropdown-toggle" id="id_profile_links" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="{{currentUser.profile_pic.url}}" alt="pfp" width="40" height="40">
+								<img class="account-image rounded-circle m-auto d-block dropdown-toggle" id="id_profile_links" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="{{request.user.userprofile.profile_pic.url}}" alt="pfp" width="40" height="40">
 								<div class="dropdown-menu" aria-labelledby="id_profile_links">
 									<a class="dropdown-item" href="{% url 'profile:view user_id = request.user.id%'}">Account</a>
 									<a class="dropdown-item" href="#">Logout</a>

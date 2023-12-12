@@ -63,17 +63,11 @@
 
     <!-- filters sidebar -->
     <div class="filter">
-        <h2>Filters here</h2>
-        <ul>
-            <li>asdfghj</li>
-            <li>asdfghj</li>
-            <li>asdfghj</li>
-            <li>asdfghj</li>
-            <li>asdfghj</li>
-            <li>asdfghj</li>
-            <li>asdfghj</li>
-            <li>asdfghj</li>
-        </ul>
+        <form method="GET" action="{% url 'library' %}">
+            {{ form }}
+        </br>
+            <input type="submit" value="Submit" class="btn btn-primary"/>
+        </form>
     </div>
 
     <!-- display of games -->
