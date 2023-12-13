@@ -1,17 +1,20 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.http import HttpResponse
-from .models import Games, Collections
-# Create your views here.
+from .models import Games, Collections, UserProfile
+from django.core.paginator import Paginator
 
 
 def all_games(request):
-    games_list = Games.objects.all()[:10]
-    return render(request, 'allGames.html', {'games_list':games_list})
+    p = Paginator(Games.objects.all(), 48)
+    page = request.GET.get('page')
+    games = p.get_page(page)
+    return render(request, 'allGames.html', {'games':games})
 
 def game_page(request, id):
         
     gameDetails = Games.objects.get(id=id)
+    playingUsers = Collections.objects.filter(games_id = id, status = "Playing")[:10]
 
     if id is not None and request.user.is_authenticated:
     
@@ -22,14 +25,18 @@ def game_page(request, id):
         if verifyStatus == True:
             getStatus = Collections.objects.get(currentUser = request.user, games_id = id, status__isnull=False)
 
-            context = {"object":gameDetails, "verifyc":verifyCollection, "verifyf":verifyFavorite, "verifys":verifyStatus, "gstatus":getStatus}
+            context = {"object":gameDetails, "verifyc":verifyCollection, 
+                       "verifyf":verifyFavorite, "verifys":verifyStatus, 
+                       "gstatus":getStatus, "playing":playingUsers}
             return render(request, 'games.html', context)
         else:
-            context = {"object":gameDetails, "verifyc":verifyCollection, "verifyf":verifyFavorite, "verifys":verifyStatus}
+            context = {"object":gameDetails, "verifyc":verifyCollection, 
+                       "verifyf":verifyFavorite, "verifys":verifyStatus,
+                       "playing":playingUsers}
             return render(request, 'games.html', context)
         
     else:
-        context = {"object":gameDetails}
+        context = {"object":gameDetails, "playing":playingUsers}
         return render(request, 'games.html', context)
 
 def add_game(request):

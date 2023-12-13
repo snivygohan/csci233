@@ -1,17 +1,132 @@
-<!doctype html>
-<html lang="en-US">
-
-<head></head>
-<h1>All games</h1>
+<!-- {% load static %} -->
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>All Games</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" href="{% static style_all.css %}"> -->
+    <style>
+        *{
+            box-sizing: border-box;
+            /*font-family: sans-serif;*/
+        }
+        body{
+            margin: 0;
+        }
+        .nav{
+            height: 80px;
+            background: #fdcc04;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0rem calc((100vw - 1300px) / 2);
+        }
+        .nav a{
+            text-decoration: none;
+            color: #000;
+            padding: 0 1.5rem;
+            font-size: 1.5em;
+        }
+        .nav a:hover{
+            color: #33ddff;
+        }
+        .logo{
+            color: #000;
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-style: italic;
+            padding: 0 2rem;
+        }
+        .filter{
+            width: 15%;
+            float: left;
+            border: 1px solid black;
+        }
+    </style>
+</head>
 <body>
-    {% for game in games_list %}
-        <ul>
-            <li><u>Title:</u> {{ game.title }}</li>
-            <li><u>ID:</u> {{ game.id }}</li>
-            <img src="{{ game.images }}">
-            <li><u>Summary:</u> {{ game.summary }}</li>
-        </ul>
-        <br/>
-    {% endfor %}
-</body>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
+    <!-- top bar -->
+    <div class="nav">
+        <div class="logo">
+            <a href="{% url 'home' %}">Group 1</a>
+        </div>
+        <div class="nav-items">
+            <a href="/">PictureHere</a>
+            <a href="/">Profile</a>
+            <a href="/">Logout</a>
+        </div>
+    </div>
+
+    <!-- filters sidebar -->
+    <div class="filter">
+        <h2>Filters here</h2>
+        <ul>
+            <li>asdfghj</li>
+            <li>asdfghj</li>
+            <li>asdfghj</li>
+            <li>asdfghj</li>
+            <li>asdfghj</li>
+            <li>asdfghj</li>
+            <li>asdfghj</li>
+            <li>asdfghj</li>
+        </ul>
+    </div>
+
+    <!-- display of games -->
+	<div class="container-sm d-flex justify-content-center me-5">
+        <div class="row">
+            {% for game in games %}
+            <div class="col-sm-2" data-bs-theme="dark">
+                <div class="card h-100" style="width: 14rem;">
+                    <img src="{{ game.images }}" class="card-img-top" onerror="this.onerror=null;this.src='https://static.thenounproject.com/png/504708-200.png';">
+                    <div class="card-body">
+                        <p class="card-text">{{ game.title }}</p>
+                        <a href="{% url 'game' game.id %}" class="stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <!-- pagination -->
+    <nav aria-label="Page navigation example">
+        {% if games.has_other_pages %}
+        <ul class="pagination justify-content-center">
+            {% if games.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ games.previous_page_number }}">Previous</a></li>
+            {% endif %}
+
+            {% if games.number|add:'-2' > 1 %}
+                <li><a class="page-link" href="?page={{ games.number|add:'-2' }}">&hellip;</a></li>
+            {% endif %}
+
+            {% for i in games.paginator.page_range %}
+                {% if games.number == i %}
+                    <li class="page-item active"><span class="page-link">{{ i }}<span class="sr-only"></span></span></li>
+                {% elif i > games.number|add:'-2' and i < games.number|add:'2' %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if games.paginator.num_pages > games.number|add:'2' %}
+                <li><a class="page-link" href="?page={{ games.number|add:'2' }}">&hellip;</a></li>
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                <li><a class="page-link" href="?page={{ games.paginator.num_pages }}">{{ games.paginator.num_pages }}</a></li>
+            {% endif %}
+
+            {% if games.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ games.next_page_number }}">Next</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ games.paginator.num_pages }}">Last &raquo</a></li>
+            {% endif %}
+        </ul>
+        {% endif %}
+    </nav>
+    
+</body>
+</html>
