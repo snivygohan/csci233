@@ -48,3 +48,11 @@ class Collections(models.Model):
         managed = True
         db_table = 'collections'
         verbose_name_plural = 'Collections'
+
+class GameRequests(models.Model):
+    
+    title = models.TextField(null = True)
+
+    class Meta:
+        managed = True
+        db_table = 'game_requests'

@@ -41,12 +41,15 @@
     <div class="playing-users-container">
         <h3>Playing Users</h3>
         <div class="playing-users">
+            <br>
             <ul>
                 {% for users in playing %}
-                <div class="card">
+                <div class="card" style="width:128px">
                     <img class="account-image rounded-circle m-auto d-block" src="{{ users.currentUser.userprofile.profile_pic.url }}" width="128" height="128">
-                    <br>
-                    <li><a href="{% url 'profile' users.currentUser.id %}" class="stretched-link">{{ users.currentUser }}</a></li>
+                    <div class="card-body">
+                        <p class="card-text text-center">{{ users.currentUser }}</p>
+                        <a href="{% url 'profile' users.currentUser.id %}" class="stretched-link"></a>
+                      </div>
                 </div>
                 {% endfor %}
             </ul>
