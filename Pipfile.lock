@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "4c8cffcacf96e496132049420acab7b8ba7fdf1b1a6c583e04bd6dfd2b0a34fc"
+            "sha256": "1476de15bed82837fbc05fc2bfcd5473490daa0f0231b62881e7972dd2c46b3d"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -55,15 +55,6 @@
             "index": "pypi",
             "markers": "python_version >= '3.6' and python_version < '4'",
             "version": "==0.11.2"
-        },
-        "django-filter": {
-            "hashes": [
-                "sha256:67583aa43b91fe8c49f74a832d95f4d8442be628fd4c6d65e9f811f5153a4e5c",
-                "sha256:99122a201d83860aef4fe77758b69dda913e874cc5e0eaa50a86b0b18d708400"
-            ],
-            "index": "pypi",
-            "markers": "python_version >= '3.7'",
-            "version": "==23.5"
         },
         "django-rename-app": {
             "hashes": [
@@ -286,6 +277,14 @@
             ],
             "markers": "python_version >= '3.5'",
             "version": "==0.4.4"
+        },
+        "typing-extensions": {
+            "hashes": [
+                "sha256:23478f88c37f27d76ac8aee6c905017a143b0b1b886c3c9f66bc2fd94f9f5783",
+                "sha256:af72aea155e91adfc61c3ae9e0e342dbc0cba726d6cba4b6c72c1f34e47291cd"
+            ],
+            "markers": "python_version < '3.11'",
+            "version": "==4.9.0"
         },
         "tzdata": {
             "hashes": [

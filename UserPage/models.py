@@ -7,7 +7,7 @@ from django.conf import settings
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete= models.CASCADE, null = True) 
     about = models.TextField(max_length = 255, default = '')
-    profile_pic = models.ImageField(null = True, blank = True, upload_to = "profile/")
+    profile_pic = models.ImageField(null = True, blank = True, upload_to = "profile/", default = '/profile/default.png')
     
     def create_profile(sender, **kwargs):
         if kwargs['created']:
