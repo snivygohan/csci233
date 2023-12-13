@@ -45,10 +45,9 @@ button-solid:focus {
 									</div>
 								</div>
 							</div>
-								
 							<div class="dropdown">
 								<button class="button-solid" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-									<img class="account-image rounded-circle m-auto d-block dropdown-toggle" id="id_profile_links"  src="{{currentUser.profile_pic.url}}" alt="pfp" width="40" height="40">
+									<img class="account-image rounded-circle m-auto d-block dropdown-toggle" id="id_profile_links"  src="{{request.user.userprofile.profile_pic.url}}" alt="pfp" width="40" height="40">
 								</button>
 								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 								  <li><a class="dropdown-item" href="{% url 'profile' request.user.id %}">Profile</a></li>
