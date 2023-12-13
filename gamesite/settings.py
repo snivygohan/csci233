@@ -45,12 +45,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'debug_toolbar',
-    'django_filters',
     'django_rename_app',
     'login',
     'baseApp',
     'gamesPage',
     'UserPage',
+    'django_filters',
+    
+    
 ]
 
 MIDDLEWARE = [
@@ -102,7 +104,7 @@ DATABASES = {
         'PASSWORD': env('DB_PASSWORD'),
         'HOST': env('DB_HOST'),
         'PORT': env('DB_PORT')
-    }
+        }
 }
 
 
