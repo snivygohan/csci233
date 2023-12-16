@@ -1,4 +1,4 @@
-<!-- {% load static %} -->
+<!-- lib v3.1 -kev 12.14.2023 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,121 +6,208 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>All Games</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-	<!-- <link rel="stylesheet" href="{% static style_all.css %}"> -->
     <style>
         *{
             box-sizing: border-box;
-            /*font-family: sans-serif;*/
+            font-family: sans-serif;
+        }
+        html{
+            scroll-behavior: smooth;
         }
         body{
             margin: 0;
         }
-        .nav{
-            height: 80px;
-            background: #fdcc04;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0rem calc((100vw - 1300px) / 2);
-        }
-        .nav a{
-            text-decoration: none;
-            color: #000;
-            padding: 0 1.5rem;
-            font-size: 1.5em;
-        }
-        .nav a:hover{
-            color: #33ddff;
-        }
-        .logo{
-            color: #000;
-            font-size: 1.5rem;
-            font-weight: bold;
-            font-style: italic;
-            padding: 0 2rem;
+        .lib{
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-template-rows: 80px 80px 1fr 80px;
+            background-color: rgb(31, 35, 38);
         }
         .filter{
-            width: 15%;
-            float: left;
             border: 1px solid black;
+            position: fixed;
+            margin-top: 25px;
+            grid-area: 2 / 1 / 4 / 2;
+            /* background-color: #a0a0a0; */
+            background: linear-gradient(to bottom right, #07609B, #18DF96);
+        }
+        .dropbtn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        }
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        }
+        /* Links inside the dropdown */
+        .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        }
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {background-color: #ddd;}
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {display: block;}
+        /* Change the background color of the dropdown button when the dropdown content is shown */
+        .dropdown:hover .dropbtn {background-color: #3e8e41;}
+        .button-solid {
+            border: none;
+        }
+        button-solid:focus {
+            border: none;
+            outline: none;
         }
     </style>
 </head>
 <body>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
-    <!-- top bar -->
-    <div class="nav">
-        <div class="logo">
-            <a href="{% url 'home' %}">Group 1</a>
-        </div>
-        <div class="nav-items">
-            <a href="/">PictureHere</a>
-            <a href="/">Profile</a>
-            <a href="/">Logout</a>
-        </div>
-    </div>
+    <div class="lib">
+        <!-- top bar -->
+        <div class="d-flex flex-column flex-lg-row p-3 px-md-4 mb-3 border-bottom shadow-sm" style="grid-area: 1 / 1 / 2 / 9;">
+            <!-- MEDIUM+ SCREENS -->
+            <div class="d-none d-md-flex flex-row my-auto flex-grow-1 align-items-center" style="background-color: rgb(31, 35, 38);">
+                <h5 class="mr-3 font-weight-normal justify-content-start">
+                    <a class="p-2" style="color: #ECDBBA;" href="{% url 'home' %}"><b>Home</b></a>
+                </h5>
+        
+                <div class="d-flex flex-row-reverse flex-grow-1">
+                    <nav class="">
+                        {% if request.user.is_authenticated %}
+                            <div class="dropdown dropleft show p-2">
+                                <div class="d-flex flex-row">
+        
+                                    <div class="btn-group dropleft">
+                                        <div class="d-flex notifications-icon-container rounded-circle align-items-center mr-3" id="id_chat_notification_dropdown_toggle" data-toggle="dropdown">
+                                            <span id="id_chat_notifications_count" class="notify-badge"></span>
+                                            <span class="d-flex material-icons notifications-material-icon m-auto align-items-center" style="color: #ECDBBA;">chat</span>
+                                            <div class="dropdown-menu scrollable-menu" aria-labelledby="id_chat_notification_dropdown_toggle" id="id_chat_notifications_container">
+                                            </div>
+                                        </div>
+                                    </div>
+        
+                                    <div class="btn-group dropleft">
+                                        <div class="d-flex notifications-icon-container rounded-circle align-items-center mr-3" id="id_notification_dropdown_toggle" data-toggle="dropdown" onclick="setGeneralNotificationsAsRead()">
+                                            <span id="id_general_notifications_count" class="notify-badge"></span>
+                                            <span class="d-flex material-icons notifications-material-icon m-auto align-items-center" style="color: #ECDBBA;">notifications</span>
+                                            <div class="dropdown-menu scrollable-menu" aria-labelledby="id_notification_dropdown_toggle" id="id_general_notifications_container">
+                                            </div>
+                                        </div>
+                                    </div>
 
-    <!-- filters sidebar -->
-    <div class="filter">
-        <form method="GET" action="{% url 'library' %}">
-            {{ form }}
-        </br>
-            <input type="submit" value="Submit" class="btn btn-primary"/>
-        </form>
-    </div>
+                                    <div class="dropdown">
+                                        <button class="button-solid" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <img class="account-image rounded-circle m-auto d-block dropdown-toggle" id="id_profile_links"  src="{{request.user.userprofile.profile_pic.url}}" alt="pfp" width="40" height="40">
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                          <li><a class="dropdown-item" style="color: #ECDBBA;" href="{% url 'profile' request.user.id %}">Profile</a></li>
+                                          <li><a class="dropdown-item" style="color: #ECDBBA;" href="{% url 'logout' %}">Log Out</a></li>
+                                        </ul>
+                                      </div>
+                                    </div>
 
-    <!-- display of games -->
-	<div class="container-sm d-flex justify-content-center me-5">
-        <div class="row">
-            {% for game in games %}
-            <div class="col-sm-2" data-bs-theme="dark">
-                <div class="card h-100" style="width: 14rem;">
-                    <img src="{{ game.images }}" class="card-img-top" onerror="this.onerror=null;this.src='https://static.thenounproject.com/png/504708-200.png';">
-                    <div class="card-body">
-                        <p class="card-text">{{ game.title }}</p>
-                        <a href="{% url 'game' game.id %}" class="stretched-link"></a>
-                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <a class="p-2" style="color: #ECDBBA;" href="#"><b>Login</b></a>
+                            <a class="btn btn-outline-primary" style="color: #ECDBBA;" href="#"><b>Register</b></a>
+                        {% endif %}	
+                    </nav>
                 </div>
             </div>
-            {% endfor %}
+            <!-- END MEDIUM+ SCREENS -->
         </div>
-    </div>
-    
-    <!-- pagination -->
-    <nav aria-label="Page navigation example">
-        {% if games.has_other_pages %}
-        <ul class="pagination justify-content-center">
-            {% if games.has_previous %}
-                <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
-                <li class="page-item"><a class="page-link" href="?page={{ games.previous_page_number }}">Previous</a></li>
-            {% endif %}
 
-            {% if games.number|add:'-2' > 1 %}
-                <li><a class="page-link" href="?page={{ games.number|add:'-2' }}">&hellip;</a></li>
-            {% endif %}
+        <!-- filters sidebar -->
+        <div class="filter">
+            <form method="GET" action="{% url 'library' %}">
+                {{ form }}
+            </br>
+                <input type="submit" value="Submit" class="btn btn-primary"/>
+            </form>
+        </div>
 
-            {% for i in games.paginator.page_range %}
-                {% if games.number == i %}
-                    <li class="page-item active"><span class="page-link">{{ i }}<span class="sr-only"></span></span></li>
-                {% elif i > games.number|add:'-2' and i < games.number|add:'2' %}
-                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+        <!-- search bar -->
+        <nav class="navbar bg-body-tertiary navbar-search" style="grid-area: 2 / 2 / 3 / 8;" data-bs-theme="dark">
+            <form class="container-fluid" role="search" hx-get="{% url 'home' %}" hx-target="#results">
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">🔎</span>
+                    <input type="text" class="form-control" type = "search" placeholder="Search game titles..." aria-label="Search" aria-describedby="basic-addon1" name="searched">
+                </div>
+            </form>
+            {% if searched %}
+                <p style="color:white;">{{ srchnum }} results for '{{ searched }}'</p>
+            {% endif %}
+        </nav>
+
+        <!-- display of games -->
+        <div class="container-sm d-flex justify-content-center me-5" style="grid-area: 3 / 2 / 4 / 9;">
+            <div class="row">
+                {% for game in games %}
+                <div class="col-sm-2" data-bs-theme="dark">
+                    <div class="card h-100" style="width: 14rem; background-color: rgb(31, 35, 38);">
+                        <img src="{{ game.images }}" class="card-img-top" onerror="this.onerror=null;this.src='https://static.thenounproject.com/png/504708-200.png';">
+                        <div class="card-body">
+                            <p class="card-text" style="color: #ECDBBA; font-weight: bold;">{{ game.title }}</p>
+                            <a href="{% url 'game' game.id %}" class="stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- pagination -->
+        <nav aria-label="Page navigation example" style="grid-area: 4 / 1 / 5 / 9; margin-top: 10px;">
+            {% if games.has_other_pages %}
+            <ul class="pagination justify-content-center">
+                {% if games.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page=1">&laquo First</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ games.previous_page_number }}">Previous</a></li>
                 {% endif %}
-            {% endfor %}
 
-            {% if games.paginator.num_pages > games.number|add:'2' %}
-                <li><a class="page-link" href="?page={{ games.number|add:'2' }}">&hellip;</a></li>
-                <li><a href="?page={{ i }}">{{ i }}</a></li>
-                <li><a class="page-link" href="?page={{ games.paginator.num_pages }}">{{ games.paginator.num_pages }}</a></li>
-            {% endif %}
+                {% if games.number|add:'-2' > 1 %}
+                    <li><a class="page-link" href="?page={{ games.number|add:'-2' }}">&hellip;</a></li>
+                {% endif %}
 
-            {% if games.has_next %}
-                <li class="page-item"><a class="page-link" href="?page={{ games.next_page_number }}">Next</a></li>
-                <li class="page-item"><a class="page-link" href="?page={{ games.paginator.num_pages }}">Last &raquo</a></li>
+                {% for i in games.paginator.page_range %}
+                    {% if games.number == i %}
+                        <li class="page-item active"><span class="page-link">{{ i }}<span class="sr-only"></span></span></li>
+                    {% elif i > games.number|add:'-2' and i < games.number|add:'2' %}
+                        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if games.paginator.num_pages > games.number|add:'2' %}
+                    <li><a class="page-link" href="?page={{ games.number|add:'2' }}">&hellip;</a></li>
+                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    <li><a class="page-link" href="?page={{ games.paginator.num_pages }}">{{ games.paginator.num_pages }}</a></li>
+                {% endif %}
+
+                {% if games.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ games.next_page_number }}">Next</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ games.paginator.num_pages }}">Last &raquo</a></li>
+                {% endif %}
+            </ul>
             {% endif %}
-        </ul>
-        {% endif %}
-    </nav>
+        </nav>
+    </div>
+        
     
 </body>
 </html>
