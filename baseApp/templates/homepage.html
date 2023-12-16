@@ -48,13 +48,13 @@
 
           <div class="navbar-links">
           {% if request.user.is_authenticated %}
-          <a  class="navbar-brand line-profile" href="{% url 'profile' request.user.id %}"><span>────────</span> </a>
+          <a  class="navbar-brand line-profile" href="{% url 'profile' request.user.id %}"><span>Profile</span> </a>
           {% else %}
-          <a  class="navbar-brand line-profile" href="#"><span>────────</span> </a>  
+          <a  class="navbar-brand line-profile" href="#"><span>Profile</span> </a>  
           {% endif %}
-          <a  class="navbar-brand line-TBD" href="#"><span>────────</span></a> 
+          <a  class="navbar-brand line-library" href="{% url 'library' %}"><span>Library</span></a> 
           
-          <a  class="navbar-brand line-TBD" href="#"><span>────────</span></a> 
+          <a  class="navbar-brand line-friends" href="#"><span>Friends</span></a> 
           
           <a  class="navbar-brand line-TBD" href="#"><span>────────</span></a> 
           </div>

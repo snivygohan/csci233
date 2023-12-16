@@ -99,17 +99,17 @@ input::placeholder{
    .line-profile:hover::before{
       content: "Profile";
    }
-   .line-favorites:hover::before{
-    content: "Favorites";
+   .line-library:hover::before{
+    content: "Library";
   }
-  .line-completed:hover::before{
-    content: "Completed";
+  .line-friends:hover::before{
+    content: "Friends";
   }
   .line-currently-playing:hover::before{
     content: "Currently Playing";
   }
-   .line-profile:hover span, .line-favorites:hover span,
-   .line-completed:hover span, .line-currently-playing:hover span{
+   .line-profile:hover span, .line-library:hover span,
+   .line-friends:hover span, .line-currently-playing:hover span{
         display: none;
    }
    span{

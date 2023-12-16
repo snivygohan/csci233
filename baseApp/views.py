@@ -60,6 +60,3 @@ def add_game(request):
 
     context = {'form':form, 'submitted':submitted}
     return render(request, 'addgame.html', context)
-
-def changeCollection(request, operation, pk):
-    return redirect('addgame.html')
