@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from .models import Games, Collections, UserProfile
 from django.core.paginator import Paginator
 from .filters import GenreFilter
+from .forms import UpdateCollection
 
 
 
