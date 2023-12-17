@@ -3,13 +3,20 @@ from django.contrib import messages
 from django.http import HttpResponse
 from .models import Games, Collections, UserProfile
 from django.core.paginator import Paginator
+from .filters import GenreFilter
+
 
 
 def all_games(request):
-    p = Paginator(Games.objects.all(), 48)
+
+    genre_filter = GenreFilter(request.GET, queryset=Games.objects.all())
+    
+    p = Paginator(genre_filter.qs, 48)
     page = request.GET.get('page')
     games = p.get_page(page)
-    return render(request, 'allGames.html', {'games':games})
+
+    context = {'games':games, 'form':genre_filter.form}
+    return render(request, 'allGames.html', context)
 
 def game_page(request, id):
         

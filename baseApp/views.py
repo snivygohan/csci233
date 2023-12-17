@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Games, Collections
 from .forms import AddGameForm
-from .filters import GenreFilter
+#from .filters import GenreFilter
 # Create your views here.
 
 
@@ -24,13 +24,13 @@ def home_page(request):
     else:
         return render(request, 'homepage.html', {'results':results})
 
-def test_page(request):
-    genre_filter = GenreFilter(request.GET, queryset=Games.objects.all())
+# def test_page(request):
+#     genre_filter = GenreFilter(request.GET, queryset=Games.objects.all())
 
-    usercollection = Collections.objects.filter(currentUser__exact=request.user.id)
+#     usercollection = Collections.objects.filter(currentUser__exact=request.user.id)
 
-    context = {'test':usercollection}
-    return render(request, 'testpage.html', context)
+#     context = {'test':usercollection}
+#     return render(request, 'testpage.html', context)
 
 # def search_game(request):
 #     srchnum = 0
@@ -60,6 +60,3 @@ def add_game(request):
 
     context = {'form':form, 'submitted':submitted}
     return render(request, 'addgame.html', context)
-
-def changeCollection(request, operation, pk):
-    return redirect('addgame.html')

@@ -1,50 +1,212 @@
-{% load static %}
-<!--indiv game details html v2, 12.5.2023-->
+<!-- {% load static %} -->
+<!--indiv game details html(+ css) v3, 12.15.2023-->
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>{{ object.title }}</title>
-	<link rel="stylesheet" href="{% static 'style_indiv.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" href="{% static 'style_indiv.css' %}"> -->
+    <style>
+        *{
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        body{
+            margin: 0;
+            background-color: rgb(31, 35, 38);
+        }
+        .dropbtn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        }
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        }
+        /* Links inside the dropdown */
+        .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        }
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {background-color: #ddd;}
+        /* Show the dropdown menu on hover */
+        .dropdown:hover .dropdown-content {display: block;}
+        /* Change the background color of the dropdown button when the dropdown content is shown */
+        .dropdown:hover .dropbtn {background-color: #3e8e41;}
+        .button-solid {
+            border: none;
+        }
+        button-solid:focus {
+            border: none;
+            outline: none;
+        }
+        .game-cover{
+            width: 50%;
+            float: left;
+            padding: 10px;
+        }
+        .image{
+            display: block;
+            width: 75%;
+            margin: auto;
+            object-fit: contain;
+            border: 1px solid #07609B;
+        }
+        .title{
+            padding: 10px;
+            width: 50%;
+            float: right;
+            background-image: linear-gradient(to bottom right, #07609B, #18DF96);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        section{
+            padding: 10px;
+            width: 50%;
+            float: right;
+            border: 1px solid #18DF96;
+            background: linear-gradient(to bottom right, #18DF96, #07609B);
+        }
+        .playing-users-container{
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #18DF96;
+            width: 50%;
+            float: right;
+            background: linear-gradient(to bottom right, #07609B, #18DF96);
+        }
+        .playing-users ul{
+            list-style: none;
+        }
+        .playing-users li{
+            display: inline-block;
+            margin-right: 10px;
+            border: 1px solid #18DF96;
+        }
+        .buttons{
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .playing-users{
+            border: 1px solid #18DF96;
+            background-color: rgb(31, 35, 38);
+        }
+        .playing-users a{
+            text-decoration: none;
+            color: #ECDBBA;
+        }
+    </style>
 </head>
 <body>
-	<nav>
-        <div class="logo">
-            <a href="{% url 'home' %}">Group 1</a>
-        </div>
-        <div class="nav-items">
-            <a href="/">PictureHere</a>
-            <a href="/">Profile</a>
-            <a href="/">Logout</a>
-        </div>
-    </nav>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
+    <!-- navbar -->
+    <div class="d-flex flex-column flex-lg-row p-3 px-md-4 mb-3 border-bottom shadow-sm" style="grid-area: 1 / 1 / 2 / 11;">
+        <!-- MEDIUM+ SCREENS -->
+        <div class="d-none d-md-flex flex-row my-auto flex-grow-1 align-items-center" style="background-color: rgb(31, 35, 38);">
+            <h5 class="mr-3 font-weight-normal justify-content-start">
+                <a class="p-2" style="color: #ECDBBA;" href="{% url 'home' %}"><b>Home</b></a>
+            </h5>
+    
+            <div class="d-flex flex-row-reverse flex-grow-1">
+                <nav class="">
+                    {% if request.user.is_authenticated %}
+                        <div class="dropdown dropleft show p-2">
+                            <div class="d-flex flex-row">
+    
+                                <div class="btn-group dropleft">
+                                    <div class="d-flex notifications-icon-container rounded-circle align-items-center mr-3" id="id_chat_notification_dropdown_toggle" data-toggle="dropdown">
+                                        <span id="id_chat_notifications_count" class="notify-badge"></span>
+                                        <span class="d-flex material-icons notifications-material-icon m-auto align-items-center">chat</span>
+                                        <div class="dropdown-menu scrollable-menu" aria-labelledby="id_chat_notification_dropdown_toggle" id="id_chat_notifications_container">
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="btn-group dropleft">
+                                    <div class="d-flex notifications-icon-container rounded-circle align-items-center mr-3" id="id_notification_dropdown_toggle" data-toggle="dropdown" onclick="setGeneralNotificationsAsRead()">
+                                        <span id="id_general_notifications_count" class="notify-badge"></span>
+                                        <span class="d-flex material-icons notifications-material-icon m-auto align-items-center">notifications</span>
+                                        <div class="dropdown-menu scrollable-menu" aria-labelledby="id_notification_dropdown_toggle" id="id_general_notifications_container">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="dropdown">
+                                    <button class="button-solid" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img class="account-image rounded-circle m-auto d-block dropdown-toggle" id="id_profile_links"  src="{{request.user.userprofile.profile_pic.url}}" alt="pfp" width="40" height="40">
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li><a class="dropdown-item" href="{% url 'profile' request.user.id %}">Profile</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    {% else %}
+                        <a class="p-2" style="color: #ECDBBA;" href="#"><b>Login</b></a>
+                        <a class="btn btn-outline-primary" style="color: #ECDBBA;" href="#"><b>Register</b></a>
+                    {% endif %}	
+                </nav>
+            </div>
+        </div>
+        <!-- END MEDIUM+ SCREENS -->
+    </div>
+
+    <!-- game cover -->
     <div class="game-cover">
         <img src="{{ object.images }}" class="image">
     </div>
 
+    <!-- game title -->
     <div class="title">
-        <h1>{{ object.title }}</h1>
+        <h1 style="background-image: linear-gradient(to bottom right, #07609B, #18DF96); -webkit-background-clip: text; background-clip: text;color: transparent;"><b>{{ object.title }}</b></h1>
     </div>
 
+    <!-- summary -->
     <section>
         <div class="summary">
-            <h2>Summary:</h2>
-            <p>{{ object.summary }}</p>
+            <h4 style="color: #ECDBBA;"><u>Summary:</u></h4>
+            <p style="color: #ECDBBA;">{{ object.summary }}</p>
         </div>
         <div class="buttons">
             {% include 'partials/collectionButtons.html' %}
         </div>
     </section>
-    
+
     <div class="playing-users-container">
-        <h3>Playing Users</h3>
+        <h3 style="color: #ECDBBA;">Playing Users</h3>
         <div class="playing-users">
+            <br>
             <ul>
                 {% for users in playing %}
-                <img src="{{ users.currentUser.userprofile.profile_pic.url }}" width="128" height="128">
-                <li><a href="{% url 'profile' users.currentUser.id %}">{{ users.currentUser }}</a></li>
+                <div class="card" style="width:128px">
+                    <img class="account-image rounded-circle m-auto d-block" src="{{ users.currentUser.userprofile.profile_pic.url }}" width="128" height="128">
+                    <div class="card-body">
+                        <p class="card-text text-center">{{ users.currentUser }}</p>
+                        <a href="{% url 'profile' users.currentUser.id %}" class="stretched-link"></a>
+                      </div>
+                </div>
                 {% endfor %}
             </ul>
         </div>

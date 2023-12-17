@@ -23,7 +23,6 @@ button-solid:focus {
 
 		<div class="d-flex flex-row-reverse flex-grow-1">
 			<nav class="">
-				{% if request.user.is_authenticated %}
 					<div class="dropdown dropleft show p-2">
 						<div class="d-flex flex-row">
 
@@ -45,11 +44,12 @@ button-solid:focus {
 									</div>
 								</div>
 							</div>
-								
+							{% if request.user.is_authenticated %}
 							<div class="dropdown">
 								<button class="button-solid" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-									<img class="account-image rounded-circle m-auto d-block dropdown-toggle" id="id_profile_links"  src="{{currentUser.profile_pic.url}}" alt="pfp" width="40" height="40">
+									<img class="account-image rounded-circle m-auto d-block dropdown-toggle" id="id_profile_links"  src="{{request.user.userprofile.profile_pic.url}}" alt="pfp" width="40" height="40">
 								</button>
+							
 								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 								  <li><a class="dropdown-item" href="{% url 'profile' request.user.id %}">Profile</a></li>
 								  <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
@@ -59,10 +59,11 @@ button-solid:focus {
 						</div>
 						
 					</div>
-				{% else %}
-					<a class="p-2 text-dark" href="#">Login</a>
-					<a class="btn btn-outline-primary" href="#">Register</a>
-				{% endif %}	
+							{% else %}
+							<img class="account-image rounded-circle m-auto d-block dropdown-toggle" id="id_profile_links"  src="{{request.user.userprofile.profile_pic.url}}" alt="pfp" width="40" height="40">
+							<a class="p-2 text-dark"href="{% url 'login' %}">Login</a>
+							<a class="btn btn-outline-primary" href="{% url 'register' %}">Register</a>
+							{% endif %}	
 			</nav>
 		</div>
 	</div>
