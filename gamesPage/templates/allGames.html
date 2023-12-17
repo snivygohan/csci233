@@ -134,26 +134,20 @@
         </div>
 
         <!-- filters sidebar -->
-        <div class="filter">
+        <nav class="navbar bg-body-tertiary navbar-search" style="grid-area: 2 / 2 / 3 / 8;" data-bs-theme="dark"></nav>
             <form method="GET" action="{% url 'library' %}">
+                <!-- search bar -->
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">🔎</span>
+                    <input type="text" class="form-control" type = "search" placeholder="Search game titles..." aria-label="Search" aria-describedby="basic-addon1" value="{{ search }}"  name="searched">
+                </div>
+        </nav>
+            <div class="filter">
                 {{ form }}
             </br>
                 <input type="submit" value="Submit" class="btn btn-primary"/>
             </form>
-        </div>
-
-        <!-- search bar -->
-        <nav class="navbar bg-body-tertiary navbar-search" style="grid-area: 2 / 2 / 3 / 8;" data-bs-theme="dark">
-            <form class="container-fluid" role="search" hx-get="{% url 'home' %}" hx-target="#results">
-                <div class="input-group">
-                    <span class="input-group-text" id="basic-addon1">🔎</span>
-                    <input type="text" class="form-control" type = "search" placeholder="Search game titles..." aria-label="Search" aria-describedby="basic-addon1" name="searched">
-                </div>
-            </form>
-            {% if searched %}
-                <p style="color:white;">{{ srchnum }} results for '{{ searched }}'</p>
-            {% endif %}
-        </nav>
+            </div>
 
         <!-- display of games -->
         <div class="container-sm d-flex justify-content-center me-5" style="grid-area: 3 / 2 / 4 / 9;">

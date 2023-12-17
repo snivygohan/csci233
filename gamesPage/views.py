@@ -10,12 +10,19 @@ from .filters import GenreFilter
 def all_games(request):
 
     genre_filter = GenreFilter(request.GET, queryset=Games.objects.all())
-    
-    p = Paginator(genre_filter.qs, 48)
+    searched = ''
+    results = genre_filter.qs
+
+    if request.method == 'GET' and 'searched' in request.GET:
+        searched = request.GET['searched']
+        if searched is not None and searched != '':
+            results = genre_filter.qs.filter(title__unaccent__icontains=searched)
+
+    p = Paginator(results, 48)
     page = request.GET.get('page')
     games = p.get_page(page)
 
-    context = {'games':games, 'form':genre_filter.form}
+    context = {'games':games, 'form':genre_filter.form, 'search':searched}
     return render(request, 'allGames.html', context)
 
 def game_page(request, id):

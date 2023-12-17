@@ -84,7 +84,7 @@
             <form class="container-fluid" role="search" hx-get="{% url 'home' %}" hx-target="#results">
               <div class="input-group">
                 <span class="input-group-text" id="basic-addon1">🔎</span>
-                <input type="text" class="form-control" type = "search" placeholder="Search game titles..." aria-label="Search" aria-describedby="basic-addon1" name="searched">
+                <input type="text" class="form-control" type = "search" placeholder="Search game titles..." aria-label="Search" aria-describedby="basic-addon1" value ="{{ searched }}" name="searched">
               </div>
             </form>
           {% if searched %}
@@ -103,7 +103,7 @@
       </nav>
       <br><br><br><br><br>
       <div id="results">
-        {% include 'partials/search-results.html'%}
+        {% include 'partials/game-cards.html'%}
       </div>
       
   </body>

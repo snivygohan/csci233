@@ -9,6 +9,8 @@ from .forms import AddGameForm
 
 
 def home_page(request):
+
+    searched = ''
     results = Games.objects.order_by('?')[:12]
     srchnum = 0
     if request.method == 'GET' and 'searched' in request.GET:
@@ -17,12 +19,12 @@ def home_page(request):
             results = Games.objects.filter(title__unaccent__icontains=searched)
             for title in results:
                 srchnum += 1
-            context = context = {'searched':searched, 'results':results, 'srchnum':srchnum}
+            context = {'searched':searched, 'results':results, 'srchnum':srchnum}
             return render(request, 'homepage.html', context)
         else:
-            return render(request, 'homepage.html', {'results':results})
+            return render(request, 'homepage.html', {'searched':searched, 'results':results})
     else:
-        return render(request, 'homepage.html', {'results':results})
+        return render(request, 'homepage.html', {'searched':searched, 'results':results})
 
 # def test_page(request):
 #     genre_filter = GenreFilter(request.GET, queryset=Games.objects.all())
