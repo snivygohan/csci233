@@ -56,14 +56,14 @@
 			  		<input type="text" name="username" id="id_input_username" class="form-control" placeholder="Username" required
 					value="{{form.initial.username}}">
 					<div class="mt-4 checkbox">
-						<label>
-							<input type="checkbox" name="hide_email" id="id_input_hide_email" {% if form.initial.hide_email %}checked{%endif%}>
-							Hide Email
-						</label>
+					<h6 class="mt-4 field-heading">About</h6>
+					<input type="text" name="about" id="id_input_about" class="form-control" placeholder="about" required
+					  value="{{form.initial.About}}">
+					<div class="mt-4 checkbox">
 			  			
 					</div>
 
-					{% for field in form %}
+					{% for field in AccountUpdateForm %}
 					<p>
 					{% for error in field.errors %}
 					<p style="color: red">{{ error }}</p>
@@ -95,6 +95,27 @@
 		// TODO
 	}
 </script>
-
-
 {% endblock content %}
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
