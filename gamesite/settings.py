@@ -30,7 +30,7 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = True
 if DEBUG:
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend" #development ONLY
-
+#EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 ALLOWED_HOSTS = []
 
 
