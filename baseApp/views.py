@@ -4,12 +4,13 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Games, Collections
 from .forms import AddGameForm
+
 #from .filters import GenreFilter
 # Create your views here.
 
 
 def home_page(request):
-    results = Games.objects.order_by('?')[:12]
+    results = Games.objects.order_by('?')[:4]
     srchnum = 0
     if request.method == 'GET' and 'searched' in request.GET:
         searched = request.GET['searched']
@@ -52,7 +53,7 @@ def add_game(request):
         form = AddGameForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/addgame?submitted=True')
+            return HttpResponseRedirect('/gamerequest?submitted=True')
     else:
         form = AddGameForm()
         if 'submitted' in request.GET:

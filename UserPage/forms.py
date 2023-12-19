@@ -8,4 +8,4 @@ class AccountUpdateForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ('user', 'about', 'profile_pic')
+        fields = ('about', 'profile_pic')

@@ -1,0 +1,161 @@
+body{
+  background-color: rgb(31, 35, 38);
+}
+.wrapper{
+    background-color: rgb(31, 35, 38);
+    display: flexbox;
+    max-width: 100%;
+    max-height: 100%;
+
+}
+.header{
+  width: auto;
+  height: auto;
+  position: relative;
+
+}
+
+.profilePic{
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+  display: inline-block;
+}
+
+.UserName{
+  font-size: 30px;
+  font-weight: 700;
+  color: white;
+  font-family: "Arial", sans-serif;
+  display: inline-block;
+  position: absolute;
+  margin-top: 0px;
+  
+}
+
+
+.about{
+  border: 5px solid gray;
+  background-color: darkorchid;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  width: 850px;
+  position: absolute;
+  display: inline-block;
+  margin-top: 60px;
+  overflow: hidden;
+}
+
+.Counters{
+  width: fit-content;
+  height: fit-content;
+  display: inline-block;
+  position: absolute;
+  margin-top: 0;
+  margin-left: 850px;
+  text-align: center;
+  color: yellow;
+
+}
+.Counters2{
+  width: fit-content;
+  height: fit-content;
+  display: inline-block;
+  position: absolute;
+  margin-left: 1030px;
+  margin-top: 0;
+  text-align: center;
+  color: yellow;
+
+}
+
+
+
+/* For Collection extension links */
+.icon-link{
+    margin-top: 10px;
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  
+.icon-link:hover{
+    color: yellow;
+  }
+
+.mod{
+    margin-top: 4%;
+    width: 50px;
+    height: 50px;
+  }
+
+
+/* Collections*/
+.heading{
+  font-size: 30px;
+  font-weight: bold;
+  color: #04D9ff;
+  font-family: "Arial", sans-serif;
+  margin-top: 20px;
+  text-decoration: underline;
+}
+.Collection{
+  margin-top: 150px;
+  display:block;
+  width:  100%;
+  height: fit-content;
+}
+.Favorites{
+  display:block;
+  width: 100%;
+  height: fit-content;
+  
+}
+
+.CurrentlyPlaying{
+  display:block;
+  width: 100%;
+  height: fit-content;
+  
+}
+
+.Completed{
+  display:block;
+  width: 100%;
+  height: fit-content;
+  
+}
+
+
+/* favorite cards */
+.card{
+    margin-left: 1%;
+    display: inline-block;
+  }
+.text-mod{
+  font-family: "Arial", sans-serif;
+  color: black;
+  font-size: 16px;
+}
+
+
+
+.card-current{
+    margin-left: 5%;
+    margin-top: .5%;
+    width: 15rem; 
+    height: 24rem;
+    display: inline-block;
+  }
+
+.card-completed{
+    margin-left: 5%;
+    margin-top: .5%;
+    width: 15rem; 
+    height: 24rem;
+    display: inline-block;
+}
