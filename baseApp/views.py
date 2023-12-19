@@ -11,7 +11,7 @@ from .forms import AddGameForm
 def home_page(request):
 
     searched = ''
-    results = Games.objects.order_by('?')[:12]
+    results = Games.objects.order_by('?')[:5]
     srchnum = 0
     if request.method == 'GET' and 'searched' in request.GET:
         searched = request.GET['searched']

@@ -4,59 +4,36 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home</title>
+    <title>home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <link href="{% static 'homepage.css' %}" rel="stylesheet" />
-    <script src="https://unpkg.com/htmx.org@1.9.9" integrity="sha384-QFjmbokDn2DjBjq+fM+8LUIVrAgqcNW2s0PjAxHETgRn9l4fvX31ZxDxvwQnyMOX" crossorigin="anonymous"></script>
   </head>
   <body>
-    <!-- user name placeholder -->
 
-    <!-- <img href="avatar.png" /> -->
-
-
-    <!-- <img class="avatar" src="images/avatarRemastered.PNG" alt="avatar" /> -->
-    <!-- <div class="avatarText"> -->
-        
-        <!-- <p style="margin-top: -10px"><a href="about.html" target="_blank" >About</a> </p>
-    </div> -->
   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-    <!-- <h1>Collection</h1>
- style="max-width: 18rem;" -->
-    <!-- <div class="card text-bg-primary mb-3 maya" > 
-        <div class="card-header">Header</div>
-        <div class="card-body" >
-          <h5 class="card-title">Primary card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div> --> 
-
-      <!-- data-bs-theme="dark" -->
-    
-      
 
       <!-- navbar fixed-top bg-body-tertiary -->
       <nav class="navbar navbar-dark bg-dark fixed-top navbar-mod" style="background-color: black">
         <div class="container-fluid">
           
           <div class="navbar-user">
-          <p>Hello, {{ request.user }}</p>
-          <a href="{% url 'home' %}" class="stretched-link"></a>
+          <p class="user-text">Hello, <br> {{ request.user }}</p>
+          <img src="images/avatar.jpeg" alt="logo">
           </div>
 
           <div class="navbar-links">
           {% if request.user.is_authenticated %}
-          <a  class="navbar-brand line-profile" href="{% url 'profile' request.user.id %}"><span>Profile</span> </a>
+          <a  class="navbar-brand line-profile" href="{% url 'profile' request.user.id %}"><span>───────────</span></a>
           {% else %}
-          <a  class="navbar-brand line-profile" href="#"><span>Profile</span> </a>  
+          <a  class="navbar-brand line-profile" href="{% url 'profile' request.user.id %}"><span>───────────</span></a>
           {% endif %}
-          <a  class="navbar-brand line-library" href="{% url 'library' %}"><span>Library</span></a> 
-          
-          <a  class="navbar-brand line-friends" href="#"><span>Friends</span></a> 
-          
-          <a  class="navbar-brand line-TBD" href="#"><span>────────</span></a> 
+          <a  class="navbar-brand line-view-all" href="{% url 'library' %}"><span>───────────</span></a>
+
+          <a  class="navbar-brand line-friends" href="#"><span>───────────</span></a>
+
           </div>
 
 
@@ -66,7 +43,7 @@
           </div> -->
 
           <div class="bottom-link">
-          <a  style="font-size: 13px;" class="navbar-brand navbar-bottom-link" href="#">About</a>
+          <a  style="font-size: 13px;" class="navbar-brand navbar-bottom-link" href="{% url 'gamerequest' %}">Request Game </a>
           {% if request.user.is_authenticated %}
           <a  style="font-size: 13px;" class="navbar-brand navbar-bottom-link" href="{% url 'logout' %}">Sign Out</a>
           {% else %}
@@ -79,20 +56,19 @@
           <a  class="navbar-brand" href="#">Popular Games</a> -->
           
          
-
-          <nav class="navbar bg-body-tertiary navbar-search" data-bs-theme="dark">
-            <form class="container-fluid" role="search" hx-get="{% url 'home' %}" hx-target="#results">
+          <!-- rgb(31, 35, 38) -->
+          <!-- bg-body-tertiary data-bs-theme="dark" -->
+          <nav class="navbar navbar-search bg-transparent" >
+            <form class="container-fluid" role="search" method="GET" action="{% url 'library' %}">
               <div class="input-group">
-                <span class="input-group-text" id="basic-addon1">🔎</span>
-                <input type="text" class="form-control" type = "search" placeholder="Search game titles..." aria-label="Search" aria-describedby="basic-addon1" value ="{{ searched }}" name="searched">
+                <!-- <span class="input-group-text" id="basic-addon1">🔎</span> -->
+                <input type="text" class="form-control input-mod" placeholder="Search game titles..." aria-label="Search" aria-describedby="basic-addon1" value ="{{ searched }}" name="searched">>
               </div>
             </form>
-          {% if searched %}
-            <p style="color:white;">{{ srchnum }} results for '{{ searched }}'</p>
-          {% endif %}
           </nav>
-
           
+          
+
           <!-- <p>Browse by console</p>
          
           <a  class="navbar-brand" href="#">Nitendo</a>
@@ -101,10 +77,36 @@
 
         </div>
       </nav>
-      <br><br><br><br><br>
-      <div id="results">
-        {% include 'partials/game-cards.html'%}
-      </div>
+
+      <h1>Random Games</h1>
       
+      <div class="scrolling-wrapper">
+      <!-- cards for popular games -->
+      <div class="row">
+      {% for games in results %}
+      <div class="card h-100" style="width: 14rem; background-color: white;">
+        <img src="{{ games.images }}" class="card-img-top" onerror="this.onerror=null;this.src='https://static.thenounproject.com/png/504708-200.png';">
+        <div class="card-body">
+            <h5 class="card-title" >{{ games.title }}</h5>
+            <a href="{% url 'game' games.id %}" class="stretched-link"></a>
+        </div>
+      </div> 
+      {% endfor %}
+      </div>
+     </div> end of card decks
+
+     <!-- link to more popular games -->
+     <a class="icon-link icon-link-hover" href="#"> &nbsp&nbsp More <i class="bi bi-caret-right mod"></i></a>
+
+    <p class="user-online">Friends Online</p>
+     <!-- displays online friends profile image -->
+
+    <img class="friend" style="margin-left: 22%;" src="images/cardIMG.png" alt="Priofile image" />
+    <img class="friend" style="margin-left: 1.5%;" src="images/cardIMG.png" alt="Profile image" />
+    <img class="friend" style="margin-left: 1.5%;" src="images/cardIMG.png" alt="Profile image" />
+
+    <!-- link to find friends -->
+    <a class="icon-link icon-link-hover friends-link" href="#">Look for friends<i class="bi bi-caret-right friendlink-mod"></i></a>
+
   </body>
 </html>

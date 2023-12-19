@@ -2,31 +2,51 @@ body{
   background-color: rgb(31, 35, 38);
    /* rgb(31, 35, 38); */
 }
-.maya{
-    max-width: 60rem;
-  }
 
-.navbar-user{
-    font-size: 30px;
+  .user-text{
+    font-size: 20px;
     font-weight: 700;
-    /* color: white; */
-    background: -webkit-linear-gradient(left, #07609B, #18DF96);
+    /* display: inline-flex; */
+    /* background: -webkit-linear-gradient(left, #07609B, #18DF96);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent; */
+    /* color: rgb(94, 181, 140); */
+    color: white;
     font-family: "Arial", sans-serif;
+    margin-left: 28%;
+  }
+.navbar-user{
     top: 5%;
     position: absolute;
-    /* margin-top: -370px; */
-    margin-left: 1px;
-    /* text-align: center; */
+}  
 
-}   
 
-/* .img-logo{
-  border: 5px solid white;
-  background-color: aliceblue;
-  width: 25px;
-} */
+h1{
+  margin-left: 22%;
+  font-family: "Arial", sans-serif;
+  font-weight: 600;
+  font-size: 45px;
+  color: white;
+  margin-top: 6.5%;
+}
+
+input[type=text]::placeholder, 
+input[type=text]:hover {
+    color: white;
+    font-family: "Arial", sans-serif;
+  } 
+ .input-mod {
+    outline:none;
+    box-shadow:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    border-radius: 15px;
+    color: white;
+    font-family: "Arial", sans-serif;
+    border: 1px solid #DADBDD; 
+  
+    transition: .3s border-color;
+  } 
 
 .navbar-mod{  
     height: 100vh;
@@ -46,7 +66,7 @@ body{
   display: grid;
   /* margin-top: -100; */
   position: relative;
-  top: -150px;
+  top: -130px;
 
     /* padding-bottom: 1em; */
 
@@ -58,11 +78,13 @@ body{
 
 .navbar-search{
   position: absolute;
+  /* position: fixed; */
    /* margin-left: 200px; */
   border-radius: 25px;
   border: 2px;
-  width: 1090px;
-  margin-left: 300px;
+  width: 190%;
+  margin-left: 200%;
+  /* margin-right: 15%; */
   top: 4%;
 }
 
@@ -99,17 +121,28 @@ input::placeholder{
    .line-profile:hover::before{
       content: "Profile";
    }
-   .line-library:hover::before{
-    content: "Library";
+   .line-favorites:hover::before{
+    content: "Favorites";
   }
   .line-friends:hover::before{
     content: "Friends";
   }
+  .line-collection:hover::before{
+    content: "Your Collection";
+  }
+  .line-view-all:hover::before{
+    content: "View All Games";
+  }
+  .line-completed:hover::before{
+    content: "Completed";
+  }
   .line-currently-playing:hover::before{
     content: "Currently Playing";
   }
-   .line-profile:hover span, .line-library:hover span,
-   .line-friends:hover span, .line-currently-playing:hover span{
+   .line-profile:hover span, .line-favorites:hover span,
+   .line-completed:hover span, .line-currently-playing:hover span,
+   .line-collection:hover span, .line-friends:hover span, 
+   .line-view-all:hover span {
         display: none;
    }
    span{
@@ -140,3 +173,64 @@ input::placeholder{
   /* #usernameHolder{
     color: blue;
   } */
+
+  /* card details */
+
+ 
+  .card{
+    /* margin: 5px; */
+    margin-left: 1%;
+  }
+.text-mod{
+  font-family: "Arial", sans-serif;
+  color: black;
+  font-size: 16px;
+}
+
+.scrolling-wrapper {
+  margin-left: 450px;
+  margin-top: 20px;
+}
+.scrolling-wrapper::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
+}
+
+.icon-link{
+  margin-left: 13%;
+  margin-top: 2%;
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+}
+
+.icon-link:hover{
+  color: grey;
+}
+
+.mod{
+  margin-top: -8%;
+}
+.friendlink-mod{
+  margin-top: -4.5%;
+  /* display: block; */
+}
+.friends-link{
+  position: absolute;
+  margin-left: 2%;
+  margin-top: 3.5%;
+}
+
+.user-online{
+  margin-left: 22%;
+  margin-top: 1.5%;
+  font-size: 30px;
+  font-weight: 600;
+  color: white;
+}
+
+.friend{
+   margin-top: .5%;
+   /* margin-left: 22%; */
+   border-radius: 50%;
+   width: 7rem;
+}
