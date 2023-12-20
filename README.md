@@ -1,3 +1,6 @@
+PIXEL 
+A video game collecting website to track; your collection, favorite games, currently playing games, and completed games all in one place! 
+
 HOW TO RUN THE WEBSITE
 1. Download pipenv
 2. Download our project folder "csci233"
