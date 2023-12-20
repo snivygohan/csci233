@@ -51,12 +51,6 @@
 		<u><h2>Completed</h2></u>
 		<h2>{{numCompleted}} </h2>
 	</div>
-	
-
-
-	
-	
-	<a class="icon-link icon-link-hover" href="#">View Collection<i class="bi bi-caret-right mod"></i></a>
 
 	<br>
 
@@ -75,7 +69,7 @@
 						{% endfor %}		
 					</div>
 				</div>
-			<a class="icon-link icon-link-hover" href="{% url 'fullCollection' request.user.id %}">View all games in Collection<i class="bi bi-caret-right mod"></i></a>
+			<a class="icon-link icon-link-hover" href="{% url 'fullCollection' pageuser.user.id %}">View all games in Collection<i class="bi bi-caret-right mod"></i></a>
 		</div>
 
 	<div class = "Favorites">
@@ -93,7 +87,7 @@
 					{% endfor %}		
 				</div>
 			</div>
-		<a class="icon-link icon-link-hover" href="{% url 'favorites' request.user.id %}">View all games in Favorites<i class="bi bi-caret-right mod"></i></a>
+		<a class="icon-link icon-link-hover" href="{% url 'favorites'  pageuser.user.id %}">View all games in Favorites<i class="bi bi-caret-right mod"></i></a>
 	</div>
 
 
@@ -112,7 +106,7 @@
 					{% endfor %}		
 				</div>
 			</div>
-		<a class="icon-link icon-link-hover" href="{% url 'current' request.user.id %}">View all games in Currently Playing<i class="bi bi-caret-right mod"></i></a>
+		<a class="icon-link icon-link-hover" href="{% url 'current' pageuser.user.id %}">View all games in Currently Playing<i class="bi bi-caret-right mod"></i></a>
 	</div>
 
 	
@@ -131,7 +125,7 @@
 						{% endfor %}		
 					</div>
 				</div>
-			<a class="icon-link icon-link-hover" href="{% url 'finished' request.user.id %}">View all games in Completed<i class="bi bi-caret-right mod"></i></a>
+			<a class="icon-link icon-link-hover" href="{% url 'finished' pageuser.user.id %}">View all games in Completed<i class="bi bi-caret-right mod"></i></a>
 		</div>
 	
 		

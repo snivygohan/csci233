@@ -85,6 +85,9 @@
             float: right;
             border: 1px solid #18DF96;
             background: linear-gradient(to bottom right, #18DF96, #07609B);
+            position: absolute;
+            margin-left:795px;
+            margin-top: 110px;
         }
         .playing-users-container{
             margin-top: 10px;
@@ -92,6 +95,9 @@
             border: 1px solid #18DF96;
             width: 50%;
             float: right;
+            position: absolute;
+            margin-left: 795px;
+            margin-top: 500px;
             background: linear-gradient(to bottom right, #07609B, #18DF96);
         }
         .playing-users ul{
@@ -114,6 +120,18 @@
             text-decoration: none;
             color: #ECDBBA;
         }
+        .BACK{
+            font-size: 30px;
+            font-weight: bold;
+            color: #04D9ff;
+            font-family: "Arial", sans-serif;
+            margin-top: 850px;
+            text-decoration: underline;
+            position: absolute;
+            margin-left: 800px;
+
+        }
+
     </style>
 </head>
 <body>
@@ -157,7 +175,11 @@
                 </div>
                 {% endfor %}
             </ul>
+          
         </div>
+    </div>
+    <div class = "BACK">
+        <a href = "{% url 'library'%}" > BACK</a>
     </div>
 
 </body>

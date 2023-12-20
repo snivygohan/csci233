@@ -61,7 +61,7 @@
             <form class="container-fluid" role="search" method="GET" action="{% url 'library' %}">
               <div class="input-group">
                 <!-- <span class="input-group-text" id="basic-addon1">🔎</span> -->
-                <input type="text" class="form-control input-mod" placeholder="Search game titles..." aria-label="Search" aria-describedby="basic-addon1" value ="{{ searched }}" name="searched">>
+                <input type="text" class="form-control input-mod" placeholder="Search game titles..." aria-label="Search" aria-describedby="basic-addon1" value ="{{ searched }}" name="searched">
               </div>
             </form>
           </nav>
@@ -69,7 +69,7 @@
       </nav>
 
       <h1>Random Games</h1>
-      
+
       <div class="scrolling-wrapper">
       <!-- cards for popular games -->
       <div class="row">
@@ -86,7 +86,7 @@
      </div> end of card decks
 
      <!-- link to more popular games -->
-     <a class="icon-link icon-link-hover" href="#"> &nbsp&nbsp More <i class="bi bi-caret-right mod"></i></a>
+     <a class="icon-link icon-link-hover" href="{% url 'library' %}"> &nbsp&nbsp More <i class="bi bi-caret-right mod"></i></a>
     
    <!-- displays online friends profile image 
     <p class="user-online">Friends Online</p>

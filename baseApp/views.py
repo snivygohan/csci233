@@ -25,6 +25,7 @@ def home_page(request):
     else:
         return render(request, 'homepage.html', {'results':results})
 
+
 # def test_page(request):
 #     genre_filter = GenreFilter(request.GET, queryset=Games.objects.all())
 
